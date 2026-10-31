@@ -1,0 +1,64 @@
+name: Bug report
+description: Help us reproduce something that broke.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Search existing issues first and keep credentials and private conversations out of logs. For vulnerabilities, follow [SECURITY.md](https://github.com/im-divxnshh/kairo-chat/blob/main/SECURITY.md).
+  - type: input
+    id: version
+    attributes:
+      label: Kairo version or commit
+      placeholder: v0.2.0 or a commit hash
+    validations:
+      required: true
+  - type: input
+    id: platform
+    attributes:
+      label: OS and architecture
+      placeholder: macOS 15 / arm64 or Windows 11 / x64
+    validations:
+      required: true
+  - type: dropdown
+    id: provider
+    attributes:
+      label: AI provider
+      options:
+        - Not related to a provider
+        - Codex
+        - Claude Code
+        - Ollama
+        - Multiple providers
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Include your setup and a minimal example.
+      placeholder: |
+        1. Open ...
+        2. Click ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Add a screenshot or recording if it helps.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      description: Redact secrets and personal data before pasting.
+      render: text

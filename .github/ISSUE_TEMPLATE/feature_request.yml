@@ -1,0 +1,27 @@
+name: Feature request
+description: Pitch something that would improve your flow.
+title: "[Feature]: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      description: Describe the workflow and who would benefit.
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: What would you like Kairo to do?
+      description: A concrete before-and-after example is useful.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you've considered
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add mockups, platform constraints, or related issues if useful.

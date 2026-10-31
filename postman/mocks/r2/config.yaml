@@ -1,0 +1,7 @@
+version: 1
+name: r2-contract
+origin: storage.kairo.test
+interceptRequests: true
+scenarios:
+  - name: default
+    path: default.js

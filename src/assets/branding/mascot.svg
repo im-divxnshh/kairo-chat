@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Kairo anime mascot">
+<defs><linearGradient id="tile" x2="1" y2="1"><stop stop-color="#302647"/><stop offset="1" stop-color="#16191e"/></linearGradient></defs>
+<rect x="74" y="74" width="876" height="876" rx="224" fill="#15171c"/><rect x="96" y="96" width="832" height="832" rx="208" fill="url(#tile)"/>
+<ellipse cx="512" cy="517" rx="336" ry="336" fill="#b69ff8" opacity=".12"/>
+<path d="m230 662-19-172 35-103-15-68 105 31 61-120 38 66 115-44 17 67 109-39 68 89 54-4-42 146 24 121-75 60H286Z" fill="#574378"/>
+<path d="m249 644-12-155 41-93-12-40 79 26 57-98 41 54 105-46 26 63 95-33 47 82 42-3-31 117 21 98-57 46H311Z" fill="#b8a1f5"/>
+<rect x="251" y="674" width="522" height="200" rx="105" fill="#303a2c"/><rect x="271" y="688" width="482" height="180" rx="92" fill="#cefa79"/>
+<rect x="466" y="625" width="91" height="89" rx="32" fill="#edbaa8"/><rect x="304" y="377" width="416" height="308" rx="143" fill="#ffd9c4"/>
+<g fill="#ffd9c4"><ellipse cx="310" cy="555.5" rx="28" ry="44.5"/><ellipse cx="717" cy="555.5" rx="28" ry="44.5"/></g>
+<path d="m283 432 26-66 101-35 98 13 69-17 108 41 46 70-59 37-42-70-34 70-50-80-56 68-23-64-68 65-22-55-47 53Z" fill="#b8a1f5"/>
+<g fill="#d3c4ff"><path d="m352 363 59-18 45 5-51 55Z"/><path d="m548 352 30-7 59 20-31 43Z"/></g>
+<g class="anime-eyes"><g id="left-eye"><ellipse cx="406" cy="545" rx="49" ry="59" fill="#3b3048"/><ellipse cx="406" cy="551" rx="31" ry="49" fill="#a7db74"/><ellipse cx="406" cy="553" rx="16" ry="43" fill="#274039"/><ellipse cx="388" cy="517" rx="13" ry="17" fill="#fffcf4"/><ellipse cx="425.5" cy="568" rx="6.5" ry="8" fill="#fffcf4"/><rect x="362" y="487" width="91" height="9" rx="4" fill="#48344d"/></g><use href="#left-eye" transform="translate(211)"/></g>
+<g fill="#f59db6" opacity=".65"><rect x="330" y="597" width="52" height="15" rx="7"/><rect x="644" y="597" width="52" height="15" rx="7"/></g><rect x="505" y="584" width="14" height="7" rx="3" fill="#edbaa8"/>
+<path d="M494 620c10 15 26 15 36 0" fill="none" stroke="#744b64" stroke-width="7" stroke-linecap="round"/>
+<g fill="#748d50"><rect x="414" y="714" width="12" height="88" rx="6"/><rect x="599" y="714" width="12" height="88" rx="6"/></g>
+<circle cx="512" cy="772" r="21" fill="#a890e8"/><path d="m512 758 4 10 10 4-10 4-4 10-4-10-10-4 10-4Z" fill="#fff6e8"/>
+<path class="mascot-spark" d="m785 174 15 46 46 15-46 15-15 46-15-46-46-15 46-15Z" fill="#f29de5"/>
+<path d="m213 705 6 15 15 6-15 6-6 15-6-15-15-6 15-6Z" fill="#f29de5"/>
+</svg>

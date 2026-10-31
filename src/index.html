@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; media-src 'self' data: blob:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none';">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Kairo</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <section id="authScreen" class="auth-screen">
+    <div class="auth-art"><div class="brand large"><span class="brand-mark"><img src="assets/branding/mascot.svg" alt=""></span>Kairo</div><h1>A little space.<br>A lot of possibility.</h1><p>Your conversations, projects, and favorite AI tools.<br>One thoughtful workspace.</p><div class="auth-orbit"><img src="assets/branding/mascot.svg" alt="Kairo anime mascot"></div><small>CLAUDE CODE · CODEX · YOUR MODELS</small></div>
+    <div class="auth-card"><span class="eyebrow">YOUR AI WORKSPACE</span><h2 id="authTitle">Welcome back</h2><p id="authSubtitle">Sign in to your workspace.</p>
+      <form id="authForm"><label>Email<input id="authEmail" type="email" autocomplete="email" required placeholder="you@example.com"></label><label>Password<input id="authPassword" type="password" autocomplete="current-password" minlength="6" required placeholder="At least 6 characters"></label><p id="authError" class="error" role="alert"></p><button id="authSubmit" class="primary" type="submit">Sign in</button></form>
+      <div class="auth-actions"><button id="authToggle" class="text-button">Create an account</button><button id="authReset" class="text-button">Forgot password?</button></div>
+      <div class="auth-divider"></div><button id="firebaseSetup">Configure Firebase</button><button id="publicProgress" class="text-button">View feature progress ↗</button><p id="configStatus" class="muted"></p>
+    </div>
+  </section>
+  <div id="workspace" class="app" hidden>
+    <aside id="sidebar" class="sidebar">
+      <div class="brand"><span class="brand-mark"><img src="assets/branding/mascot.svg" alt=""></span><b>Kairo</b><button id="collapseSidebar" class="icon-button" title="Collapse sidebar" aria-label="Collapse sidebar">◧</button></div>
+      <button id="newChat" class="new-chat">＋ <span>New conversation</span><kbd>⌘ N</kbd></button>
+      <select id="projectSwitcher" aria-label="Current project"></select>
+      <nav id="navigation" class="nav" aria-label="Workspace sections"></nav>
+      <div class="side-heading"><span>CONVERSATIONS</span><button id="temporaryChat" class="text-button" title="Start a temporary chat">◌</button><button id="archiveToggle" class="text-button" title="Show archived chats">▤</button></div>
+      <input id="conversationSearch" class="sidebar-search" type="search" placeholder="Find a conversation…" aria-label="Search conversations">
+      <div id="historyList" class="history-list"></div>
+      <div class="sidebar-bottom"><button id="syncStatus" class="sync-status">○ Connecting to Firebase</button><button id="account" class="account"><span id="accountAvatar" class="avatar">A</span><span><b id="accountEmail">Your workspace</b><small id="accountVerified">Firebase account</small></span><span>⌄</span></button></div>
+      <div id="sidebarResizer" class="resizer" role="separator" aria-label="Resize sidebar" tabindex="0"></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div class="top-heading"><button id="expandSidebar" class="icon-button" title="Show sidebar" aria-label="Show sidebar">☰</button><div><span class="eyebrow">YOUR AI WORKSPACE</span><h1 id="viewTitle">Conversation</h1></div></div><div class="top-actions"><button id="globalSearch" class="icon-button" title="Search workspace" aria-label="Search workspace">⌕</button><button id="commandPalette" class="icon-button" title="Command palette" aria-label="Command palette">⌘</button><button id="fullscreen" class="icon-button" title="Full screen" aria-label="Full screen">⛶</button><select id="provider" aria-label="Provider"></select><input id="model" class="model-input" list="modelOptions" placeholder="Default model" aria-label="Model"><datalist id="modelOptions"></datalist></div></header>
+      <div id="view" class="view"></div>
+      <footer id="composerWrap" class="composer-wrap"><div id="attachments" class="attachments"></div><div class="composer"><textarea id="prompt" rows="2" placeholder="What would you like to work on?" aria-label="Message"></textarea><div class="composer-bottom"><div class="composer-tools"><button id="attach" title="Attach files" aria-label="Attach files">＋</button><button id="attachFolder" title="Attach a folder" aria-label="Attach a folder">▱</button><button id="usePrompt" title="Use a prompt" aria-label="Use a prompt">✧</button><button id="parallel" title="Send to multiple providers" aria-label="Send to multiple providers">⇉</button><button id="voiceInput" title="Dictate a message" aria-label="Dictate a message">🎙</button><button id="readResponse" title="Read latest response" aria-label="Read latest response">◖</button><span id="contextHint" class="hint">Enter to send · Shift + Enter for a new line</span></div><button id="stop" class="stop-button" hidden>■ Stop</button><button id="send" class="send-button" title="Send" aria-label="Send">↑</button></div></div><div id="composerNote" class="composer-note">A space for your next idea.</div></footer>
+    </main>
+  </div>
+  <dialog id="modal" class="modal"><div class="modal-heading"><h2 id="modalTitle"></h2><button id="closeModal" class="icon-button" aria-label="Close dialog">×</button></div><div id="modalBody"></div></dialog>
+  <dialog id="permissionModal" class="modal"><h2>Permission requested</h2><p id="permissionTool"></p><pre id="permissionInput"></pre><div class="form-actions"><button id="denyPermission">Deny</button><button id="allowPermission" class="primary">Allow</button></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <script src="./lib/math.js"></script>
+  <script src="./lib/core.js"></script>
+  <script src="./renderer.js"></script>
+</body>
+</html>

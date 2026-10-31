@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/im-divxnshh/kairo-chat/blob/main/SECURITY.md
+    about: Follow the private reporting instructions; do not disclose vulnerabilities in public issues.

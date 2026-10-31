@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+<key>CFBundleIdentifier</key><string>com.kairo.chat.speech</string>
+<key>CFBundleName</key><string>Kairo Dictation</string>
+<key>NSMicrophoneUsageDescription</key><string>Kairo uses your microphone when you start dictation.</string>
+<key>NSSpeechRecognitionUsageDescription</key><string>Kairo turns dictation into a message using on-device speech recognition.</string>
+</dict></plist>

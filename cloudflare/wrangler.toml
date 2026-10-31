@@ -1,0 +1,17 @@
+name = "kairo-chat"
+main = "worker.mjs"
+compatibility_date = "2026-10-31"
+preview_urls = false
+
+[observability]
+enabled = true
+
+[observability.logs]
+enabled = true
+
+# Set your actual bucket name before deploying.
+[[r2_buckets]]
+binding = "BUCKET"
+bucket_name = "kairo-chat"
+
+# Set this from cloudflare/.dev.vars locally or `wrangler secret put FIREBASE_PROJECT_ID` in production.

@@ -1,0 +1,1809 @@
+{
+  "features": [
+    {
+      "id": 1,
+      "name": "Claude Code integration",
+      "category": "Providers and CLI",
+      "status": "deferred",
+      "evidence": "Deferred at the user’s request on 2026-10-31; Codex is the active provider for now. Native Claude settings/transport tests pass, but normal-mode verification timed out at 60 seconds and safe-mode verification at 120 seconds during the request. Live response remains unverified and will be revisited later."
+    },
+    {
+      "id": 2,
+      "name": "OpenAI Codex integration",
+      "category": "Providers and CLI",
+      "status": "done",
+      "evidence": "Codex native config.toml transport is implemented and verified by subprocess/configuration tests. The user confirmed a live Codex response with npm run verify:cli on 2026-10-31."
+    },
+    {
+      "id": 3,
+      "name": "Provider switcher",
+      "category": "Providers and CLI",
+      "status": "done",
+      "evidence": "Provider configuration, CLI subprocess/stream tests, and installed CLI detection checks; live AI responses still need provider authentication and connectivity."
+    },
+    {
+      "id": 4,
+      "name": "Custom model support",
+      "category": "Providers and CLI",
+      "status": "done",
+      "evidence": "Provider configuration, CLI subprocess/stream tests, and installed CLI detection checks; live AI responses still need provider authentication and connectivity."
+    },
+    {
+      "id": 5,
+      "name": "Model selector",
+      "category": "Providers and CLI",
+      "status": "done",
+      "evidence": "Provider configuration, CLI subprocess/stream tests, and installed CLI detection checks; live AI responses still need provider authentication and connectivity."
+    },
+    {
+      "id": 6,
+      "name": "Multiple CLI configurations",
+      "category": "Providers and CLI",
+      "status": "done",
+      "evidence": "Provider configuration, CLI subprocess/stream tests, and installed CLI detection checks; live AI responses still need provider authentication and connectivity."
+    },
+    {
+      "id": 7,
+      "name": "Automatic CLI detection",
+      "category": "Providers and CLI",
+      "status": "done",
+      "evidence": "Provider configuration, CLI subprocess/stream tests, and installed CLI detection checks; live AI responses still need provider authentication and connectivity."
+    },
+    {
+      "id": 8,
+      "name": "Custom executable paths",
+      "category": "Providers and CLI",
+      "status": "done",
+      "evidence": "Provider configuration, CLI subprocess/stream tests, and installed CLI detection checks; live AI responses still need provider authentication and connectivity."
+    },
+    {
+      "id": 9,
+      "name": "Connection testing",
+      "category": "Providers and CLI",
+      "status": "done",
+      "evidence": "Provider configuration, CLI subprocess/stream tests, and installed CLI detection checks; live AI responses still need provider authentication and connectivity."
+    },
+    {
+      "id": 10,
+      "name": "Provider authentication status",
+      "category": "Providers and CLI",
+      "status": "done",
+      "evidence": "Provider configuration, CLI subprocess/stream tests, and installed CLI detection checks; live AI responses still need provider authentication and connectivity."
+    },
+    {
+      "id": 11,
+      "name": "CLI version detection",
+      "category": "Providers and CLI",
+      "status": "done",
+      "evidence": "Provider configuration, CLI subprocess/stream tests, and installed CLI detection checks; live AI responses still need provider authentication and connectivity."
+    },
+    {
+      "id": 12,
+      "name": "Provider usage information",
+      "category": "Providers and CLI",
+      "status": "done",
+      "evidence": "Provider configuration, CLI subprocess/stream tests, and installed CLI detection checks; live AI responses still need provider authentication and connectivity."
+    },
+    {
+      "id": 13,
+      "name": "New chat",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 14,
+      "name": "Multiple conversations",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 15,
+      "name": "Conversation history",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 16,
+      "name": "Rename conversations",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 17,
+      "name": "Delete conversations",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 18,
+      "name": "Archive conversations",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 19,
+      "name": "Pin conversations",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 20,
+      "name": "Conversation search",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 21,
+      "name": "Message search",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 22,
+      "name": "Streaming responses",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 23,
+      "name": "Stop generation",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 24,
+      "name": "Regenerate response",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 25,
+      "name": "Edit previous message",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 26,
+      "name": "Continue response",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 27,
+      "name": "Copy response",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 28,
+      "name": "Markdown rendering",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 29,
+      "name": "Code syntax highlighting",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 30,
+      "name": "Code copy button",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 31,
+      "name": "LaTeX rendering",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Native MathML renders common LaTeX fractions, roots, scripts, symbols and matrices. Markdown/math tests verify formatting, code-fence preservation and escaped invalid formulas."
+    },
+    {
+      "id": 32,
+      "name": "Message timestamps",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 33,
+      "name": "Response feedback",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 34,
+      "name": "Branch conversations",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 35,
+      "name": "Temporary chats",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 36,
+      "name": "Export conversations",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 37,
+      "name": "Import conversations",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 38,
+      "name": "Conversation tags",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 39,
+      "name": "Conversation folders",
+      "category": "Conversations and messages",
+      "status": "done",
+      "evidence": "Implemented renderer/backend conversation path; verified by DOM chat tests and cloud/main-process integration tests."
+    },
+    {
+      "id": 40,
+      "name": "Code file attachments",
+      "category": "Files and attachments",
+      "status": "done",
+      "evidence": "Attachment reading/previews, R2 references and file-boundary checks; verified by core, UI and main-process integration tests."
+    },
+    {
+      "id": 41,
+      "name": "Text file attachments",
+      "category": "Files and attachments",
+      "status": "done",
+      "evidence": "Attachment reading/previews, R2 references and file-boundary checks; verified by core, UI and main-process integration tests."
+    },
+    {
+      "id": 42,
+      "name": "Multiple file attachments",
+      "category": "Files and attachments",
+      "status": "done",
+      "evidence": "Attachment reading/previews, R2 references and file-boundary checks; verified by core, UI and main-process integration tests."
+    },
+    {
+      "id": 43,
+      "name": "Drag and drop files",
+      "category": "Files and attachments",
+      "status": "done",
+      "evidence": "Attachment reading/previews, R2 references and file-boundary checks; verified by core, UI and main-process integration tests."
+    },
+    {
+      "id": 44,
+      "name": "Folder attachments",
+      "category": "Files and attachments",
+      "status": "done",
+      "evidence": "Attachment reading/previews, R2 references and file-boundary checks; verified by core, UI and main-process integration tests."
+    },
+    {
+      "id": 45,
+      "name": "File preview",
+      "category": "Files and attachments",
+      "status": "done",
+      "evidence": "Attachment reading/previews, R2 references and file-boundary checks; verified by core, UI and main-process integration tests."
+    },
+    {
+      "id": 46,
+      "name": "Image attachments",
+      "category": "Files and attachments",
+      "status": "done",
+      "evidence": "Attachment reading/previews, R2 references and file-boundary checks; verified by core, UI and main-process integration tests."
+    },
+    {
+      "id": 47,
+      "name": "PDF support",
+      "category": "Files and attachments",
+      "status": "done",
+      "evidence": "macOS PDFKit text extraction and chat-context delivery pass an actual generated-PDF test. Native helper packaging is configured; textless/password-protected PDFs are reported explicitly. Other platforms use pdftotext."
+    },
+    {
+      "id": 48,
+      "name": "CSV preview",
+      "category": "Files and attachments",
+      "status": "done",
+      "evidence": "Attachment reading/previews, R2 references and file-boundary checks; verified by core, UI and main-process integration tests."
+    },
+    {
+      "id": 49,
+      "name": "JSON preview",
+      "category": "Files and attachments",
+      "status": "done",
+      "evidence": "Attachment reading/previews, R2 references and file-boundary checks; verified by core, UI and main-process integration tests."
+    },
+    {
+      "id": 50,
+      "name": "Syntax highlighting",
+      "category": "Files and attachments",
+      "status": "done",
+      "evidence": "Attachment reading/previews, R2 references and file-boundary checks; verified by core, UI and main-process integration tests."
+    },
+    {
+      "id": 51,
+      "name": "Recent files",
+      "category": "Files and attachments",
+      "status": "done",
+      "evidence": "Attachment reading/previews, R2 references and file-boundary checks; verified by core, UI and main-process integration tests."
+    },
+    {
+      "id": 52,
+      "name": "Attachment history",
+      "category": "Files and attachments",
+      "status": "done",
+      "evidence": "Attachment reading/previews, R2 references and file-boundary checks; verified by core, UI and main-process integration tests."
+    },
+    {
+      "id": 53,
+      "name": "File reference management",
+      "category": "Files and attachments",
+      "status": "done",
+      "evidence": "Attachment reading/previews, R2 references and file-boundary checks; verified by core, UI and main-process integration tests."
+    },
+    {
+      "id": 54,
+      "name": "Sensitive file detection",
+      "category": "Files and attachments",
+      "status": "done",
+      "evidence": "Attachment reading/previews, R2 references and file-boundary checks; verified by core, UI and main-process integration tests."
+    },
+    {
+      "id": 55,
+      "name": "Create projects",
+      "category": "Projects and workspaces",
+      "status": "done",
+      "evidence": "Dedicated project creation selects a parent folder, validates the new name and refuses existing folders. Filesystem and Electron backend tests exercise creation and project-window routing."
+    },
+    {
+      "id": 56,
+      "name": "Open existing projects",
+      "category": "Projects and workspaces",
+      "status": "done",
+      "evidence": "Project records, scope controls and file explorer implemented; scoped file traversal tests and shared record/DOM form checks pass."
+    },
+    {
+      "id": 57,
+      "name": "Project switcher",
+      "category": "Projects and workspaces",
+      "status": "done",
+      "evidence": "Project records, scope controls and file explorer implemented; scoped file traversal tests and shared record/DOM form checks pass."
+    },
+    {
+      "id": 58,
+      "name": "Recent projects",
+      "category": "Projects and workspaces",
+      "status": "done",
+      "evidence": "Project records, scope controls and file explorer implemented; scoped file traversal tests and shared record/DOM form checks pass."
+    },
+    {
+      "id": 59,
+      "name": "Project conversations",
+      "category": "Projects and workspaces",
+      "status": "done",
+      "evidence": "Project records, scope controls and file explorer implemented; scoped file traversal tests and shared record/DOM form checks pass."
+    },
+    {
+      "id": 60,
+      "name": "Project instructions",
+      "category": "Projects and workspaces",
+      "status": "done",
+      "evidence": "Project records, scope controls and file explorer implemented; scoped file traversal tests and shared record/DOM form checks pass."
+    },
+    {
+      "id": 61,
+      "name": "Project configuration",
+      "category": "Projects and workspaces",
+      "status": "done",
+      "evidence": "Project records, scope controls and file explorer implemented; scoped file traversal tests and shared record/DOM form checks pass."
+    },
+    {
+      "id": 62,
+      "name": "File explorer",
+      "category": "Projects and workspaces",
+      "status": "done",
+      "evidence": "Project records, scope controls and file explorer implemented; scoped file traversal tests and shared record/DOM form checks pass."
+    },
+    {
+      "id": 63,
+      "name": "File search",
+      "category": "Projects and workspaces",
+      "status": "done",
+      "evidence": "Project records, scope controls and file explorer implemented; scoped file traversal tests and shared record/DOM form checks pass."
+    },
+    {
+      "id": 64,
+      "name": "Git repository detection",
+      "category": "Projects and workspaces",
+      "status": "done",
+      "evidence": "Project records, scope controls and file explorer implemented; scoped file traversal tests and shared record/DOM form checks pass."
+    },
+    {
+      "id": 65,
+      "name": "Project memory",
+      "category": "Projects and workspaces",
+      "status": "done",
+      "evidence": "Project records, scope controls and file explorer implemented; scoped file traversal tests and shared record/DOM form checks pass."
+    },
+    {
+      "id": 66,
+      "name": "Project notes",
+      "category": "Projects and workspaces",
+      "status": "done",
+      "evidence": "Project records, scope controls and file explorer implemented; scoped file traversal tests and shared record/DOM form checks pass."
+    },
+    {
+      "id": 67,
+      "name": "Project bookmarks",
+      "category": "Projects and workspaces",
+      "status": "done",
+      "evidence": "Project records, scope controls and file explorer implemented; scoped file traversal tests and shared record/DOM form checks pass."
+    },
+    {
+      "id": 68,
+      "name": "Project activity history",
+      "category": "Projects and workspaces",
+      "status": "done",
+      "evidence": "Project and conversation saves/deletions and Git actions write scoped activity records. The backend/cloud integration exercises record persistence; the Activity page reads those records."
+    },
+    {
+      "id": 69,
+      "name": "Multiple project windows",
+      "category": "Projects and workspaces",
+      "status": "blocked",
+      "evidence": "Multiple-window backend construction and project routing tests pass. User check: open two project windows in native Electron and confirm independent views."
+    },
+    {
+      "id": 70,
+      "name": "Workspace layouts",
+      "category": "Projects and workspaces",
+      "status": "done",
+      "evidence": "Chat, project and review presets persist usable width/sidebar/split-view settings and restore the selected route. Runtime and DOM preset tests pass."
+    },
+    {
+      "id": 71,
+      "name": "Git status",
+      "category": "Git and GitHub",
+      "status": "done",
+      "evidence": "Git action implemented and exercised in an isolated test repository; tests/git.test.js."
+    },
+    {
+      "id": 72,
+      "name": "Branch switcher",
+      "category": "Git and GitHub",
+      "status": "done",
+      "evidence": "Git action implemented and exercised in an isolated test repository; tests/git.test.js."
+    },
+    {
+      "id": 73,
+      "name": "Commit history",
+      "category": "Git and GitHub",
+      "status": "done",
+      "evidence": "Git action implemented and exercised in an isolated test repository; tests/git.test.js."
+    },
+    {
+      "id": 74,
+      "name": "Stage changes",
+      "category": "Git and GitHub",
+      "status": "done",
+      "evidence": "Git action implemented and exercised in an isolated test repository; tests/git.test.js."
+    },
+    {
+      "id": 75,
+      "name": "Unstage changes",
+      "category": "Git and GitHub",
+      "status": "done",
+      "evidence": "Git action implemented and exercised in an isolated test repository; tests/git.test.js."
+    },
+    {
+      "id": 76,
+      "name": "Commit changes",
+      "category": "Git and GitHub",
+      "status": "done",
+      "evidence": "Git action implemented and exercised in an isolated test repository; tests/git.test.js."
+    },
+    {
+      "id": 77,
+      "name": "View diffs",
+      "category": "Git and GitHub",
+      "status": "done",
+      "evidence": "Git action implemented and exercised in an isolated test repository; tests/git.test.js."
+    },
+    {
+      "id": 78,
+      "name": "AI code review",
+      "category": "Git and GitHub",
+      "status": "done",
+      "evidence": "DOM workflow test sends the captured project diff to the selected CLI for review."
+    },
+    {
+      "id": 79,
+      "name": "AI commit message generation",
+      "category": "Git and GitHub",
+      "status": "done",
+      "evidence": "DOM workflow test verifies staged diff input, editable AI commit review and committing the reviewed message."
+    },
+    {
+      "id": 80,
+      "name": "Create branches",
+      "category": "Git and GitHub",
+      "status": "done",
+      "evidence": "Git action implemented and exercised in an isolated test repository; tests/git.test.js."
+    },
+    {
+      "id": 81,
+      "name": "Merge branches",
+      "category": "Git and GitHub",
+      "status": "done",
+      "evidence": "Git action implemented and exercised in an isolated test repository; tests/git.test.js."
+    },
+    {
+      "id": 82,
+      "name": "Pull and push",
+      "category": "Git and GitHub",
+      "status": "done",
+      "evidence": "Isolated bare-remote integration test verifies push, clone and pull preserve committed file contents."
+    },
+    {
+      "id": 83,
+      "name": "Git stash",
+      "category": "Git and GitHub",
+      "status": "done",
+      "evidence": "Git action implemented and exercised in an isolated test repository; tests/git.test.js."
+    },
+    {
+      "id": 84,
+      "name": "Conflict detection",
+      "category": "Git and GitHub",
+      "status": "done",
+      "evidence": "Git action implemented and exercised in an isolated test repository; tests/git.test.js."
+    },
+    {
+      "id": 85,
+      "name": "Conflict explanation",
+      "category": "Git and GitHub",
+      "status": "done",
+      "evidence": "DOM conflict workflow passes complete conflict hunks to the CLI; runtime tests verify file boundaries."
+    },
+    {
+      "id": 86,
+      "name": "AI merge resolution",
+      "category": "Git and GitHub",
+      "status": "done",
+      "evidence": "DOM workflow requires reviewed resolution text and the original hash; runtime tests reject stale writes and retain backups."
+    },
+    {
+      "id": 87,
+      "name": "GitHub integration",
+      "category": "Git and GitHub",
+      "status": "blocked",
+      "evidence": "GitHub CLI discovery and diff actions plus PR summary/review UI are implemented. User check: authenticate gh and open a real repository PR; GitHub network access is unavailable here."
+    },
+    {
+      "id": 88,
+      "name": "Pull request summaries",
+      "category": "Git and GitHub",
+      "status": "done",
+      "evidence": "DOM PR workflow sends the captured PR diff through the dedicated summary action."
+    },
+    {
+      "id": 89,
+      "name": "Pull request reviews",
+      "category": "Git and GitHub",
+      "status": "done",
+      "evidence": "DOM PR workflow sends the captured diff through the separate bugs, risks and missing-tests review action."
+    },
+    {
+      "id": 90,
+      "name": "Global AI preferences",
+      "category": "Preferences and memory",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 91,
+      "name": "Personal instructions",
+      "category": "Preferences and memory",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 92,
+      "name": "Coding preferences",
+      "category": "Preferences and memory",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 93,
+      "name": "Preferred programming languages",
+      "category": "Preferences and memory",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 94,
+      "name": "Preferred frameworks",
+      "category": "Preferences and memory",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 95,
+      "name": "Project-specific memory",
+      "category": "Preferences and memory",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 96,
+      "name": "Conversation memory",
+      "category": "Preferences and memory",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 97,
+      "name": "Saved facts",
+      "category": "Preferences and memory",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 98,
+      "name": "Saved code snippets",
+      "category": "Preferences and memory",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 99,
+      "name": "Memory search",
+      "category": "Preferences and memory",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 100,
+      "name": "Memory editor",
+      "category": "Preferences and memory",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 101,
+      "name": "Memory import/export",
+      "category": "Preferences and memory",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 102,
+      "name": "Enable/disable memory",
+      "category": "Preferences and memory",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 103,
+      "name": "Context-aware suggestions",
+      "category": "Preferences and memory",
+      "status": "done",
+      "evidence": "Suggestions respond to the selected project, recent conversations and task failures. Scoped suggestion tests pass."
+    },
+    {
+      "id": 104,
+      "name": "Remember preferred provider",
+      "category": "Preferences and memory",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 105,
+      "name": "Custom system instructions",
+      "category": "Preferences and memory",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 106,
+      "name": "Built-in prompt library",
+      "category": "Prompt library",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 107,
+      "name": "Custom prompts",
+      "category": "Prompt library",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 108,
+      "name": "Prompt categories",
+      "category": "Prompt library",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 109,
+      "name": "Prompt search",
+      "category": "Prompt library",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 110,
+      "name": "Favorite prompts",
+      "category": "Prompt library",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 111,
+      "name": "Prompt variables",
+      "category": "Prompt library",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 112,
+      "name": "Prompt templates",
+      "category": "Prompt library",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 113,
+      "name": "Prompt editing",
+      "category": "Prompt library",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 114,
+      "name": "Prompt duplication",
+      "category": "Prompt library",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 115,
+      "name": "Prompt import/export",
+      "category": "Prompt library",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 116,
+      "name": "Prompt history",
+      "category": "Prompt library",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 117,
+      "name": "Prompt keyboard shortcuts",
+      "category": "Prompt library",
+      "status": "done",
+      "evidence": "Prompt shortcuts are connected to template insertion. DOM tests exercise modifier handling and shifted digit keys."
+    },
+    {
+      "id": 118,
+      "name": "Project-specific prompts",
+      "category": "Prompt library",
+      "status": "done",
+      "evidence": "Scoped record editors/templates and context integration implemented; core search/context/template validation and DOM form checks pass."
+    },
+    {
+      "id": 119,
+      "name": "Global conversation search",
+      "category": "Search and knowledge",
+      "status": "done",
+      "evidence": "Word search and source/document records implemented; core search/filter tests pass. This does not claim semantic embeddings."
+    },
+    {
+      "id": 120,
+      "name": "Search messages",
+      "category": "Search and knowledge",
+      "status": "done",
+      "evidence": "Word search and source/document records implemented; core search/filter tests pass. This does not claim semantic embeddings."
+    },
+    {
+      "id": 121,
+      "name": "Search projects",
+      "category": "Search and knowledge",
+      "status": "done",
+      "evidence": "Word search and source/document records implemented; core search/filter tests pass. This does not claim semantic embeddings."
+    },
+    {
+      "id": 122,
+      "name": "Search attachments",
+      "category": "Search and knowledge",
+      "status": "done",
+      "evidence": "Word search and source/document records implemented; core search/filter tests pass. This does not claim semantic embeddings."
+    },
+    {
+      "id": 123,
+      "name": "Search prompts",
+      "category": "Search and knowledge",
+      "status": "done",
+      "evidence": "Word search and source/document records implemented; core search/filter tests pass. This does not claim semantic embeddings."
+    },
+    {
+      "id": 124,
+      "name": "Search code snippets",
+      "category": "Search and knowledge",
+      "status": "done",
+      "evidence": "Word search and source/document records implemented; core search/filter tests pass. This does not claim semantic embeddings."
+    },
+    {
+      "id": 125,
+      "name": "Search project files",
+      "category": "Search and knowledge",
+      "status": "done",
+      "evidence": "Word search and source/document records implemented; core search/filter tests pass. This does not claim semantic embeddings."
+    },
+    {
+      "id": 126,
+      "name": "Semantic search",
+      "category": "Search and knowledge",
+      "status": "done",
+      "evidence": "Scoped candidate validation, real fixture CLI ranking and DOM result mapping pass; unknown returned IDs are rejected."
+    },
+    {
+      "id": 127,
+      "name": "Local knowledge base",
+      "category": "Search and knowledge",
+      "status": "done",
+      "evidence": "Word search and source/document records implemented; core search/filter tests pass. This does not claim semantic embeddings."
+    },
+    {
+      "id": 128,
+      "name": "Document indexing",
+      "category": "Search and knowledge",
+      "status": "done",
+      "evidence": "Word search and source/document records implemented; core search/filter tests pass. This does not claim semantic embeddings."
+    },
+    {
+      "id": 129,
+      "name": "Project documentation indexing",
+      "category": "Search and knowledge",
+      "status": "done",
+      "evidence": "Word search and source/document records implemented; core search/filter tests pass. This does not claim semantic embeddings."
+    },
+    {
+      "id": 130,
+      "name": "Knowledge collections",
+      "category": "Search and knowledge",
+      "status": "done",
+      "evidence": "Word search and source/document records implemented; core search/filter tests pass. This does not claim semantic embeddings."
+    },
+    {
+      "id": 131,
+      "name": "Source references",
+      "category": "Search and knowledge",
+      "status": "done",
+      "evidence": "Word search and source/document records implemented; core search/filter tests pass. This does not claim semantic embeddings."
+    },
+    {
+      "id": 132,
+      "name": "Search filters",
+      "category": "Search and knowledge",
+      "status": "done",
+      "evidence": "Word search and source/document records implemented; core search/filter tests pass. This does not claim semantic embeddings."
+    },
+    {
+      "id": 133,
+      "name": "Apple-inspired design",
+      "category": "Design and accessibility",
+      "status": "done",
+      "evidence": "CSS/renderer controls implemented; DOM theme, composer, split-provider and UI interaction checks pass. Native visual review remains unverified."
+    },
+    {
+      "id": 134,
+      "name": "Dark theme",
+      "category": "Design and accessibility",
+      "status": "done",
+      "evidence": "CSS/renderer controls implemented; DOM theme, composer, split-provider and UI interaction checks pass. Native visual review remains unverified."
+    },
+    {
+      "id": 135,
+      "name": "Light theme",
+      "category": "Design and accessibility",
+      "status": "done",
+      "evidence": "CSS/renderer controls implemented; DOM theme, composer, split-provider and UI interaction checks pass. Native visual review remains unverified."
+    },
+    {
+      "id": 136,
+      "name": "System theme",
+      "category": "Design and accessibility",
+      "status": "done",
+      "evidence": "CSS/renderer controls implemented; DOM theme, composer, split-provider and UI interaction checks pass. Native visual review remains unverified."
+    },
+    {
+      "id": 137,
+      "name": "Custom accent colors",
+      "category": "Design and accessibility",
+      "status": "done",
+      "evidence": "CSS/renderer controls implemented; DOM theme, composer, split-provider and UI interaction checks pass. Native visual review remains unverified."
+    },
+    {
+      "id": 138,
+      "name": "Glassmorphism",
+      "category": "Design and accessibility",
+      "status": "done",
+      "evidence": "CSS/renderer controls implemented; DOM theme, composer, split-provider and UI interaction checks pass. Native visual review remains unverified."
+    },
+    {
+      "id": 139,
+      "name": "Smooth animations",
+      "category": "Design and accessibility",
+      "status": "done",
+      "evidence": "CSS/renderer controls implemented; DOM theme, composer, split-provider and UI interaction checks pass. Native visual review remains unverified."
+    },
+    {
+      "id": 140,
+      "name": "Native window controls",
+      "category": "Design and accessibility",
+      "status": "blocked",
+      "evidence": "Native title bars and controls are configured. User check: minimize, maximize and close on the target OS; Electron cannot launch in this sandbox."
+    },
+    {
+      "id": 141,
+      "name": "Resizable sidebar",
+      "category": "Design and accessibility",
+      "status": "done",
+      "evidence": "CSS/renderer controls implemented; DOM theme, composer, split-provider and UI interaction checks pass. Native visual review remains unverified."
+    },
+    {
+      "id": 142,
+      "name": "Collapsible sidebar",
+      "category": "Design and accessibility",
+      "status": "done",
+      "evidence": "CSS/renderer controls implemented; DOM theme, composer, split-provider and UI interaction checks pass. Native visual review remains unverified."
+    },
+    {
+      "id": 143,
+      "name": "Responsive layout",
+      "category": "Design and accessibility",
+      "status": "done",
+      "evidence": "CSS/renderer controls implemented; DOM theme, composer, split-provider and UI interaction checks pass. Native visual review remains unverified."
+    },
+    {
+      "id": 144,
+      "name": "Split chat view",
+      "category": "Design and accessibility",
+      "status": "done",
+      "evidence": "CSS/renderer controls implemented; DOM theme, composer, split-provider and UI interaction checks pass. Native visual review remains unverified."
+    },
+    {
+      "id": 145,
+      "name": "Full-screen mode",
+      "category": "Design and accessibility",
+      "status": "blocked",
+      "evidence": "Full-screen IPC toggle passes backend tests. User check: enter and exit full screen in the native desktop app."
+    },
+    {
+      "id": 146,
+      "name": "Floating composer",
+      "category": "Design and accessibility",
+      "status": "done",
+      "evidence": "CSS/renderer controls implemented; DOM theme, composer, split-provider and UI interaction checks pass. Native visual review remains unverified."
+    },
+    {
+      "id": 147,
+      "name": "Custom scrollbars",
+      "category": "Design and accessibility",
+      "status": "done",
+      "evidence": "CSS/renderer controls implemented; DOM theme, composer, split-provider and UI interaction checks pass. Native visual review remains unverified."
+    },
+    {
+      "id": 148,
+      "name": "Command palette",
+      "category": "Design and accessibility",
+      "status": "done",
+      "evidence": "CSS/renderer controls implemented; DOM theme, composer, split-provider and UI interaction checks pass. Native visual review remains unverified."
+    },
+    {
+      "id": 149,
+      "name": "Context menus",
+      "category": "Design and accessibility",
+      "status": "done",
+      "evidence": "CSS/renderer controls implemented; DOM theme, composer, split-provider and UI interaction checks pass. Native visual review remains unverified."
+    },
+    {
+      "id": 150,
+      "name": "Keyboard shortcuts",
+      "category": "Design and accessibility",
+      "status": "done",
+      "evidence": "CSS/renderer controls implemented; DOM theme, composer, split-provider and UI interaction checks pass. Native visual review remains unverified."
+    },
+    {
+      "id": 151,
+      "name": "Customizable toolbar",
+      "category": "Design and accessibility",
+      "status": "done",
+      "evidence": "CSS/renderer controls implemented; DOM theme, composer, split-provider and UI interaction checks pass. Native visual review remains unverified."
+    },
+    {
+      "id": 152,
+      "name": "Adjustable font size",
+      "category": "Design and accessibility",
+      "status": "done",
+      "evidence": "CSS/renderer controls implemented; DOM theme, composer, split-provider and UI interaction checks pass. Native visual review remains unverified."
+    },
+    {
+      "id": 153,
+      "name": "Adjustable chat width",
+      "category": "Design and accessibility",
+      "status": "done",
+      "evidence": "CSS/renderer controls implemented; DOM theme, composer, split-provider and UI interaction checks pass. Native visual review remains unverified."
+    },
+    {
+      "id": 154,
+      "name": "Compact mode",
+      "category": "Design and accessibility",
+      "status": "done",
+      "evidence": "CSS/renderer controls implemented; DOM theme, composer, split-provider and UI interaction checks pass. Native visual review remains unverified."
+    },
+    {
+      "id": 155,
+      "name": "Accessibility options",
+      "category": "Design and accessibility",
+      "status": "done",
+      "evidence": "CSS/renderer controls implemented; DOM theme, composer, split-provider and UI interaction checks pass. Native visual review remains unverified."
+    },
+    {
+      "id": 156,
+      "name": "Reduced motion",
+      "category": "Design and accessibility",
+      "status": "done",
+      "evidence": "CSS/renderer controls implemented; DOM theme, composer, split-provider and UI interaction checks pass. Native visual review remains unverified."
+    },
+    {
+      "id": 157,
+      "name": "General settings",
+      "category": "Settings and diagnostics",
+      "status": "done",
+      "evidence": "Settings and diagnostic paths implemented; validation, DOM setting controls, export and main-process tests pass."
+    },
+    {
+      "id": 158,
+      "name": "Appearance settings",
+      "category": "Settings and diagnostics",
+      "status": "done",
+      "evidence": "Settings and diagnostic paths implemented; validation, DOM setting controls, export and main-process tests pass."
+    },
+    {
+      "id": 159,
+      "name": "Provider settings",
+      "category": "Settings and diagnostics",
+      "status": "done",
+      "evidence": "Settings and diagnostic paths implemented; validation, DOM setting controls, export and main-process tests pass."
+    },
+    {
+      "id": 160,
+      "name": "Model settings",
+      "category": "Settings and diagnostics",
+      "status": "done",
+      "evidence": "Settings and diagnostic paths implemented; validation, DOM setting controls, export and main-process tests pass."
+    },
+    {
+      "id": 161,
+      "name": "CLI settings",
+      "category": "Settings and diagnostics",
+      "status": "done",
+      "evidence": "Settings and diagnostic paths implemented; validation, DOM setting controls, export and main-process tests pass."
+    },
+    {
+      "id": 162,
+      "name": "File attachment settings",
+      "category": "Settings and diagnostics",
+      "status": "done",
+      "evidence": "Settings and diagnostic paths implemented; validation, DOM setting controls, export and main-process tests pass."
+    },
+    {
+      "id": 163,
+      "name": "Terminal settings",
+      "category": "Settings and diagnostics",
+      "status": "blocked",
+      "evidence": "Terminal command paths, custom executable and arguments are implemented. User check: open a project terminal on the target OS."
+    },
+    {
+      "id": 164,
+      "name": "Git settings",
+      "category": "Settings and diagnostics",
+      "status": "done",
+      "evidence": "Settings and diagnostic paths implemented; validation, DOM setting controls, export and main-process tests pass."
+    },
+    {
+      "id": 165,
+      "name": "Memory settings",
+      "category": "Settings and diagnostics",
+      "status": "done",
+      "evidence": "Settings and diagnostic paths implemented; validation, DOM setting controls, export and main-process tests pass."
+    },
+    {
+      "id": 166,
+      "name": "Privacy settings",
+      "category": "Settings and diagnostics",
+      "status": "done",
+      "evidence": "Settings and diagnostic paths implemented; validation, DOM setting controls, export and main-process tests pass."
+    },
+    {
+      "id": 167,
+      "name": "Keyboard shortcut settings",
+      "category": "Settings and diagnostics",
+      "status": "done",
+      "evidence": "Settings and diagnostic paths implemented; validation, DOM setting controls, export and main-process tests pass."
+    },
+    {
+      "id": 168,
+      "name": "Notification settings",
+      "category": "Settings and diagnostics",
+      "status": "done",
+      "evidence": "Settings and diagnostic paths implemented; validation, DOM setting controls, export and main-process tests pass."
+    },
+    {
+      "id": 169,
+      "name": "Backup settings",
+      "category": "Settings and diagnostics",
+      "status": "done",
+      "evidence": "Settings and diagnostic paths implemented; validation, DOM setting controls, export and main-process tests pass."
+    },
+    {
+      "id": 170,
+      "name": "Custom data storage location",
+      "category": "Settings and diagnostics",
+      "status": "done",
+      "evidence": "Local cache, queued edits and backups can move to a selected folder with the original retained. Filesystem and backend relocation tests pass."
+    },
+    {
+      "id": 171,
+      "name": "Reset application",
+      "category": "Settings and diagnostics",
+      "status": "done",
+      "evidence": "Workspace reset backs up first, cancels active tasks, clears account records, restores defaults and synchronizes. The backend test verifies reset after relocation."
+    },
+    {
+      "id": 172,
+      "name": "Import settings",
+      "category": "Settings and diagnostics",
+      "status": "done",
+      "evidence": "Settings and diagnostic paths implemented; validation, DOM setting controls, export and main-process tests pass."
+    },
+    {
+      "id": 173,
+      "name": "Export settings",
+      "category": "Settings and diagnostics",
+      "status": "done",
+      "evidence": "Settings and diagnostic paths implemented; validation, DOM setting controls, export and main-process tests pass."
+    },
+    {
+      "id": 174,
+      "name": "Configuration validation",
+      "category": "Settings and diagnostics",
+      "status": "done",
+      "evidence": "Settings and diagnostic paths implemented; validation, DOM setting controls, export and main-process tests pass."
+    },
+    {
+      "id": 175,
+      "name": "Diagnostic logs",
+      "category": "Settings and diagnostics",
+      "status": "done",
+      "evidence": "Settings and diagnostic paths implemented; validation, DOM setting controls, export and main-process tests pass."
+    },
+    {
+      "id": 176,
+      "name": "Token usage tracking",
+      "category": "Usage and observability",
+      "status": "done",
+      "evidence": "Run metadata and statistics recorded/displayed; provider usage, timing, environment isolation and backend integration checks pass."
+    },
+    {
+      "id": 177,
+      "name": "Request duration",
+      "category": "Usage and observability",
+      "status": "done",
+      "evidence": "Run metadata and statistics recorded/displayed; provider usage, timing, environment isolation and backend integration checks pass."
+    },
+    {
+      "id": 178,
+      "name": "Response duration",
+      "category": "Usage and observability",
+      "status": "done",
+      "evidence": "Run metadata and statistics recorded/displayed; provider usage, timing, environment isolation and backend integration checks pass."
+    },
+    {
+      "id": 179,
+      "name": "Session statistics",
+      "category": "Usage and observability",
+      "status": "done",
+      "evidence": "Run metadata and statistics recorded/displayed; provider usage, timing, environment isolation and backend integration checks pass."
+    },
+    {
+      "id": 180,
+      "name": "Conversation statistics",
+      "category": "Usage and observability",
+      "status": "done",
+      "evidence": "Run metadata and statistics recorded/displayed; provider usage, timing, environment isolation and backend integration checks pass."
+    },
+    {
+      "id": 181,
+      "name": "Agent task statistics",
+      "category": "Usage and observability",
+      "status": "done",
+      "evidence": "DOM Activity test verifies per-agent task counts, failures, tokens and duration."
+    },
+    {
+      "id": 182,
+      "name": "Error logs",
+      "category": "Usage and observability",
+      "status": "done",
+      "evidence": "Run metadata and statistics recorded/displayed; provider usage, timing, environment isolation and backend integration checks pass."
+    },
+    {
+      "id": 183,
+      "name": "CLI execution logs",
+      "category": "Usage and observability",
+      "status": "done",
+      "evidence": "Backend and DOM tests verify per-task CLI events, timings, status, usage and log display."
+    },
+    {
+      "id": 184,
+      "name": "Context usage information",
+      "category": "Usage and observability",
+      "status": "done",
+      "evidence": "Run metadata and statistics recorded/displayed; provider usage, timing, environment isolation and backend integration checks pass."
+    },
+    {
+      "id": 185,
+      "name": "Provider health status",
+      "category": "Usage and observability",
+      "status": "done",
+      "evidence": "Run metadata and statistics recorded/displayed; provider usage, timing, environment isolation and backend integration checks pass."
+    },
+    {
+      "id": 186,
+      "name": "Usage charts",
+      "category": "Usage and observability",
+      "status": "done",
+      "evidence": "Run metadata and statistics recorded/displayed; provider usage, timing, environment isolation and backend integration checks pass."
+    },
+    {
+      "id": 187,
+      "name": "Local activity dashboard",
+      "category": "Usage and observability",
+      "status": "done",
+      "evidence": "Run metadata and statistics recorded/displayed; provider usage, timing, environment isolation and backend integration checks pass."
+    },
+    {
+      "id": 188,
+      "name": "API key protection",
+      "category": "Usage and observability",
+      "status": "done",
+      "evidence": "Run metadata and statistics recorded/displayed; provider usage, timing, environment isolation and backend integration checks pass."
+    },
+    {
+      "id": 189,
+      "name": "Agent completed notification",
+      "category": "Notifications",
+      "status": "done",
+      "evidence": "Local/R2 backup or Firestore synchronization path implemented; encrypted round-trip, conflict, account/cache and export integration tests pass."
+    },
+    {
+      "id": 190,
+      "name": "Agent failed notification",
+      "category": "Notifications",
+      "status": "done",
+      "evidence": "Backend integration test verifies preflight failures create failure task records and notification history."
+    },
+    {
+      "id": 191,
+      "name": "Long-running task notification",
+      "category": "Notifications",
+      "status": "done",
+      "evidence": "Backend timer test verifies the long-task alert fires during an active CLI request."
+    },
+    {
+      "id": 192,
+      "name": "Permission request notification",
+      "category": "Notifications",
+      "status": "done",
+      "evidence": "Claude permission protocol allow/deny tests and DOM decision controls pass; requests are bound to their originating window."
+    },
+    {
+      "id": 193,
+      "name": "CLI disconnected notification",
+      "category": "Notifications",
+      "status": "done",
+      "evidence": "Provider health polling detects a connected CLI becoming unavailable and creates a disconnect notification; backend test passes."
+    },
+    {
+      "id": 194,
+      "name": "Update available notification",
+      "category": "Notifications",
+      "status": "done",
+      "evidence": "Release manifest tests verify numeric versions, HTTPS, credential rejection, size limits and HTTP errors; backend update notification test passes."
+    },
+    {
+      "id": 195,
+      "name": "Custom notification sounds",
+      "category": "Notifications",
+      "status": "blocked",
+      "evidence": "Sound selection, one-window playback dispatch and missing-file system fallback pass backend tests. User check: hear custom and system sounds on the desktop."
+    },
+    {
+      "id": 196,
+      "name": "Desktop notifications",
+      "category": "Notifications",
+      "status": "blocked",
+      "evidence": "Notification history and native delivery calls pass backend tests. User check: allow Kairo notifications and confirm OS delivery."
+    },
+    {
+      "id": 197,
+      "name": "Automatic local backups",
+      "category": "Backup, database and sync",
+      "status": "done",
+      "evidence": "Backend integration test triggers the actual backup timer and confirms a local backup; timing, manual backup and encrypted restore tests pass."
+    },
+    {
+      "id": 198,
+      "name": "Manual backup",
+      "category": "Backup, database and sync",
+      "status": "done",
+      "evidence": "Local/R2 backup or Firestore synchronization path implemented; encrypted round-trip, conflict, account/cache and export integration tests pass."
+    },
+    {
+      "id": 199,
+      "name": "Restore backup",
+      "category": "Backup, database and sync",
+      "status": "done",
+      "evidence": "Local/R2 backup or Firestore synchronization path implemented; encrypted round-trip, conflict, account/cache and export integration tests pass."
+    },
+    {
+      "id": 200,
+      "name": "Export all conversations",
+      "category": "Backup, database and sync",
+      "status": "done",
+      "evidence": "Local/R2 backup or Firestore synchronization path implemented; encrypted round-trip, conflict, account/cache and export integration tests pass."
+    },
+    {
+      "id": 201,
+      "name": "Export projects",
+      "category": "Backup, database and sync",
+      "status": "done",
+      "evidence": "Local/R2 backup or Firestore synchronization path implemented; encrypted round-trip, conflict, account/cache and export integration tests pass."
+    },
+    {
+      "id": 202,
+      "name": "Restore projects",
+      "category": "Backup, database and sync",
+      "status": "done",
+      "evidence": "Local/R2 backup or Firestore synchronization path implemented; encrypted round-trip, conflict, account/cache and export integration tests pass."
+    },
+    {
+      "id": 203,
+      "name": "SQLite database",
+      "category": "Backup, database and sync",
+      "status": "replaced",
+      "evidence": "Superseded by the user request to use Firebase Firestore as the primary database. No SQLite dependency is required."
+    },
+    {
+      "id": 204,
+      "name": "Database migrations",
+      "category": "Backup, database and sync",
+      "status": "done",
+      "evidence": "Cache boundary tests preserve queued user edits, migrate legacy provider profiles and reject future caches without rewriting them."
+    },
+    {
+      "id": 205,
+      "name": "Encrypted cloud backup",
+      "category": "Backup, database and sync",
+      "status": "done",
+      "evidence": "Local/R2 backup or Firestore synchronization path implemented; encrypted round-trip, conflict, account/cache and export integration tests pass."
+    },
+    {
+      "id": 206,
+      "name": "Cross-device synchronization",
+      "category": "Backup, database and sync",
+      "status": "done",
+      "evidence": "Local/R2 backup or Firestore synchronization path implemented; encrypted round-trip, conflict, account/cache and export integration tests pass."
+    },
+    {
+      "id": 207,
+      "name": "Sync conflict resolution",
+      "category": "Backup, database and sync",
+      "status": "done",
+      "evidence": "Local/R2 backup or Firestore synchronization path implemented; encrypted round-trip, conflict, account/cache and export integration tests pass."
+    },
+    {
+      "id": 208,
+      "name": "Multi-agent collaboration",
+      "category": "Agents, MCP and workflows",
+      "status": "done",
+      "evidence": "Coordinator planning, parallel Claude/Codex specialists and final reconciliation share conversation context. The DOM test verifies all four provider requests and their handoffs."
+    },
+    {
+      "id": 209,
+      "name": "Claude and Codex parallel execution",
+      "category": "Agents, MCP and workflows",
+      "status": "done",
+      "evidence": "Provider/profile/workflow or stdio MCP path implemented; parallel DOM, provider transport and MCP session tests pass. Live external integrations remain setup-dependent."
+    },
+    {
+      "id": 210,
+      "name": "Compare agent responses",
+      "category": "Agents, MCP and workflows",
+      "status": "done",
+      "evidence": "Provider/profile/workflow or stdio MCP path implemented; parallel DOM, provider transport and MCP session tests pass. Live external integrations remain setup-dependent."
+    },
+    {
+      "id": 211,
+      "name": "Send task to multiple providers",
+      "category": "Agents, MCP and workflows",
+      "status": "done",
+      "evidence": "Provider/profile/workflow or stdio MCP path implemented; parallel DOM, provider transport and MCP session tests pass. Live external integrations remain setup-dependent."
+    },
+    {
+      "id": 212,
+      "name": "AI task planning",
+      "category": "Agents, MCP and workflows",
+      "status": "done",
+      "evidence": "DOM planning workflow creates the requested planning prompt through the selected CLI."
+    },
+    {
+      "id": 213,
+      "name": "Agent-to-agent handoff",
+      "category": "Agents, MCP and workflows",
+      "status": "done",
+      "evidence": "Provider/profile/workflow or stdio MCP path implemented; parallel DOM, provider transport and MCP session tests pass. Live external integrations remain setup-dependent."
+    },
+    {
+      "id": 214,
+      "name": "Custom agent profiles",
+      "category": "Agents, MCP and workflows",
+      "status": "done",
+      "evidence": "Provider/profile/workflow or stdio MCP path implemented; parallel DOM, provider transport and MCP session tests pass. Live external integrations remain setup-dependent."
+    },
+    {
+      "id": 215,
+      "name": "Agent workflow builder",
+      "category": "Agents, MCP and workflows",
+      "status": "done",
+      "evidence": "Provider/profile/workflow or stdio MCP path implemented; parallel DOM, provider transport and MCP session tests pass. Live external integrations remain setup-dependent."
+    },
+    {
+      "id": 216,
+      "name": "MCP server integration",
+      "category": "Agents, MCP and workflows",
+      "status": "done",
+      "evidence": "Provider/profile/workflow or stdio MCP path implemented; parallel DOM, provider transport and MCP session tests pass. Live external integrations remain setup-dependent."
+    },
+    {
+      "id": 217,
+      "name": "MCP tools management",
+      "category": "Agents, MCP and workflows",
+      "status": "done",
+      "evidence": "Provider/profile/workflow or stdio MCP path implemented; parallel DOM, provider transport and MCP session tests pass. Live external integrations remain setup-dependent."
+    },
+    {
+      "id": 218,
+      "name": "Custom MCP servers",
+      "category": "Agents, MCP and workflows",
+      "status": "done",
+      "evidence": "Provider/profile/workflow or stdio MCP path implemented; parallel DOM, provider transport and MCP session tests pass. Live external integrations remain setup-dependent."
+    },
+    {
+      "id": 219,
+      "name": "Skills integration",
+      "category": "Agents, MCP and workflows",
+      "status": "done",
+      "evidence": "Provider/profile/workflow or stdio MCP path implemented; parallel DOM, provider transport and MCP session tests pass. Live external integrations remain setup-dependent."
+    },
+    {
+      "id": 220,
+      "name": "Reusable agent workflows",
+      "category": "Agents, MCP and workflows",
+      "status": "done",
+      "evidence": "Provider/profile/workflow or stdio MCP path implemented; parallel DOM, provider transport and MCP session tests pass. Live external integrations remain setup-dependent."
+    },
+    {
+      "id": 221,
+      "name": "Scheduled agent tasks",
+      "category": "Agents, MCP and workflows",
+      "status": "done",
+      "evidence": "Backend scheduler test runs headlessly, records completion, counts missed intervals, keeps cadence and does not recreate deleted schedules."
+    },
+    {
+      "id": 222,
+      "name": "Ollama integration",
+      "category": "Additional providers and capabilities",
+      "status": "done",
+      "evidence": "Provider/profile/workflow or stdio MCP path implemented; parallel DOM, provider transport and MCP session tests pass. Live external integrations remain setup-dependent."
+    },
+    {
+      "id": 223,
+      "name": "OpenAI-compatible API providers",
+      "category": "Additional providers and capabilities",
+      "status": "replaced",
+      "evidence": "Removed at the user request. AI access uses Claude settings.json and Codex config.toml instead of a direct OpenAI API provider."
+    },
+    {
+      "id": 224,
+      "name": "Custom API endpoints",
+      "category": "Additional providers and capabilities",
+      "status": "done",
+      "evidence": "Custom provider endpoints are configured in native CLI files, including Codex model_providers. The user-confirmed Codex transport uses that configuration; Kairo has no direct API endpoint editor."
+    },
+    {
+      "id": 225,
+      "name": "Browser research",
+      "category": "Additional providers and capabilities",
+      "status": "blocked",
+      "evidence": "Research UI and native Claude WebSearch/WebFetch / Codex live-search arguments pass tests. User check: run a real cited research task; sandbox networking is restricted."
+    },
+    {
+      "id": 226,
+      "name": "Visual debugging",
+      "category": "Additional providers and capabilities",
+      "status": "done",
+      "evidence": "DOM screenshot workflow retains image attachments; real fixture subprocess tests verify Claude base64 and Codex image-file delivery."
+    },
+    {
+      "id": 227,
+      "name": "Voice input",
+      "category": "Additional providers and capabilities",
+      "status": "blocked",
+      "evidence": "macOS speech helper compiles with embedded privacy descriptions; Windows capture and stop-file transport, cancellation and DOM draft delivery pass local tests. User check: microphone, OS permissions and dictation on the target OS."
+    },
+    {
+      "id": 228,
+      "name": "Text-to-speech",
+      "category": "Additional providers and capabilities",
+      "status": "blocked",
+      "evidence": "DOM test verifies latest response is passed to system speech synthesis. User check: confirm audible speech on the target OS."
+    },
+    {
+      "id": 229,
+      "name": "macOS application",
+      "category": "Desktop applications and installers",
+      "status": "blocked",
+      "evidence": "Kairo macOS app packaging and native PDF/speech compilation work locally, with helpers unpacked and private environment files excluded. User check: launch the refreshed release/mac/Kairo.app and complete a signed-in chat; Electron aborts in this sandbox. Anime icon, installer styling and launcher animation details: docs/BRANDING.md; include the visual checks in docs/USER_CHECKS.md."
+    },
+    {
+      "id": 230,
+      "name": "Windows application",
+      "category": "Desktop applications and installers",
+      "status": "blocked",
+      "evidence": "Windows runtime paths and portable fixture tests are implemented; CI builds target Windows. User check: run the app on Windows; no Windows host is available here. Anime icon, installer styling and launcher animation details: docs/BRANDING.md; include the visual checks in docs/USER_CHECKS.md."
+    },
+    {
+      "id": 231,
+      "name": "DMG installer",
+      "category": "Desktop applications and installers",
+      "status": "blocked",
+      "evidence": "User check: build and install the DMG on the host. Previous disk-image creation failed with Device not configured in this sandbox. Anime icon, installer styling and launcher animation details: docs/BRANDING.md; include the visual checks in docs/USER_CHECKS.md."
+    },
+    {
+      "id": 232,
+      "name": "Windows EXE installer",
+      "category": "Desktop applications and installers",
+      "status": "blocked",
+      "evidence": "NSIS installer configuration and Windows CI build are supplied. User check: build/install the EXE on Windows; no Windows build host is available here. Anime icon, installer styling and launcher animation details: docs/BRANDING.md; include the visual checks in docs/USER_CHECKS.md."
+    },
+    {
+      "id": 233,
+      "name": "Windows MSI installer",
+      "category": "Desktop applications and installers",
+      "status": "blocked",
+      "evidence": "MSI installer configuration and Windows CI build are supplied. User check: build/install the MSI on Windows; no Windows build host is available here. Anime icon, installer styling and launcher animation details: docs/BRANDING.md; include the visual checks in docs/USER_CHECKS.md."
+    }
+  ],
+  "firebase": [
+    {
+      "id": "F1",
+      "name": "Firebase project configuration",
+      "category": "Firebase authentication and database",
+      "status": "done",
+      "evidence": "Implemented and verified by Firebase REST contract tests, Electron backend integration tests and DOM account controls; live project deployment is still required."
+    },
+    {
+      "id": "F2",
+      "name": "Email and password registration",
+      "category": "Firebase authentication and database",
+      "status": "done",
+      "evidence": "Implemented and verified by Firebase REST contract tests, Electron backend integration tests and DOM account controls; live project deployment is still required."
+    },
+    {
+      "id": "F3",
+      "name": "Email and password sign-in",
+      "category": "Firebase authentication and database",
+      "status": "done",
+      "evidence": "Implemented and verified by Firebase REST contract tests, Electron backend integration tests and DOM account controls; live project deployment is still required."
+    },
+    {
+      "id": "F4",
+      "name": "Sign out and secure session persistence",
+      "category": "Firebase authentication and database",
+      "status": "done",
+      "evidence": "Implemented and verified by Firebase REST contract tests, Electron backend integration tests and DOM account controls; live project deployment is still required."
+    },
+    {
+      "id": "F5",
+      "name": "Password reset",
+      "category": "Firebase authentication and database",
+      "status": "done",
+      "evidence": "Implemented and verified by Firebase REST contract tests, Electron backend integration tests and DOM account controls; live project deployment is still required."
+    },
+    {
+      "id": "F6",
+      "name": "Email verification",
+      "category": "Firebase authentication and database",
+      "status": "done",
+      "evidence": "Implemented and verified by Firebase REST contract tests, Electron backend integration tests and DOM account controls; live project deployment is still required."
+    },
+    {
+      "id": "F7",
+      "name": "Firestore user-isolated database",
+      "category": "Firebase authentication and database",
+      "status": "done",
+      "evidence": "Implemented and verified by Firebase REST contract tests, Electron backend integration tests and DOM account controls; live project deployment is still required."
+    },
+    {
+      "id": "F8",
+      "name": "Firestore security rules",
+      "category": "Firebase authentication and database",
+      "status": "done",
+      "evidence": "User ran live deployment and verification on 2026-10-31. Firestore permits owner reads/writes and rejects cross-account, anonymous and invalid-schema requests; optimistic concurrency checks pass."
+    },
+    {
+      "id": "F9",
+      "name": "Cloud synchronization and conflict detection",
+      "category": "Firebase authentication and database",
+      "status": "done",
+      "evidence": "Implemented and verified by Firebase REST contract tests, Electron backend integration tests and DOM account controls; live project deployment is still required."
+    },
+    {
+      "id": "F10",
+      "name": "Firebase emulator verification",
+      "category": "Firebase authentication and database",
+      "status": "blocked",
+      "evidence": "Auth and Firestore emulator configuration is supplied. User check: start the emulators and exercise text-only auth/database flows; sandbox listening ports are prohibited."
+    }
+  ],
+  "storage": [
+    {
+      "id": "R1",
+      "name": "Environment-based Firebase configuration",
+      "category": "Environment, Cloudflare R2 and performance",
+      "status": "done",
+      "evidence": "Implemented; environment, Worker signature/ownership, R2 round-trip, cache, incremental sync and DOM streaming checks pass."
+    },
+    {
+      "id": "R2",
+      "name": "Environment-based native CLI configuration",
+      "category": "Environment, Cloudflare R2 and performance",
+      "status": "done",
+      "evidence": "Optional KAIRO_CLAUDE_SETTINGS_FILE and KAIRO_CODEX_CONFIG_FILE select existing native CLI configurations. File precedence, credential isolation and migration tests pass. Direct OpenAI API keys are not used."
+    },
+    {
+      "id": "R3",
+      "name": "Private Cloudflare R2 object storage",
+      "category": "Environment, Cloudflare R2 and performance",
+      "status": "done",
+      "evidence": "Implemented; environment, Worker signature/ownership, R2 round-trip, cache, incremental sync and DOM streaming checks pass."
+    },
+    {
+      "id": "R4",
+      "name": "Firebase-authenticated R2 Worker",
+      "category": "Environment, Cloudflare R2 and performance",
+      "status": "done",
+      "evidence": "Implemented; environment, Worker signature/ownership, R2 round-trip, cache, incremental sync and DOM streaming checks pass."
+    },
+    {
+      "id": "R5",
+      "name": "R2 attachment upload and retrieval",
+      "category": "Environment, Cloudflare R2 and performance",
+      "status": "done",
+      "evidence": "Implemented; environment, Worker signature/ownership, R2 round-trip, cache, incremental sync and DOM streaming checks pass."
+    },
+    {
+      "id": "R6",
+      "name": "Encrypted R2 backup and restore",
+      "category": "Environment, Cloudflare R2 and performance",
+      "status": "done",
+      "evidence": "Implemented; environment, Worker signature/ownership, R2 round-trip, cache, incremental sync and DOM streaming checks pass."
+    },
+    {
+      "id": "R7",
+      "name": "Incremental Firestore synchronization",
+      "category": "Environment, Cloudflare R2 and performance",
+      "status": "done",
+      "evidence": "Implemented; environment, Worker signature/ownership, R2 round-trip, cache, incremental sync and DOM streaming checks pass."
+    },
+    {
+      "id": "R8",
+      "name": "Attachment download caching",
+      "category": "Environment, Cloudflare R2 and performance",
+      "status": "done",
+      "evidence": "Implemented; environment, Worker signature/ownership, R2 round-trip, cache, incremental sync and DOM streaming checks pass."
+    },
+    {
+      "id": "R9",
+      "name": "Throttled streaming UI",
+      "category": "Environment, Cloudflare R2 and performance",
+      "status": "done",
+      "evidence": "Implemented; environment, Worker signature/ownership, R2 round-trip, cache, incremental sync and DOM streaming checks pass."
+    },
+    {
+      "id": "R10",
+      "name": "Firebase and R2 production deployment verification",
+      "category": "Environment, Cloudflare R2 and performance",
+      "status": "done",
+      "evidence": "User deployed Firebase rules and the existing kairo-chat Worker, then ran all 20 live checks successfully on 2026-10-31: authentication, owner/schema rules, preconditions, R2 operations, isolation, encrypted backup restore and cleanup."
+    }
+  ],
+  "branding": [
+    {
+      "id": "B1",
+      "name": "Original anime mascot and platform icon assets",
+      "category": "Branding and launcher animation",
+      "status": "done",
+      "evidence": "Original editable SVG and native raster artwork replace the lettermark. ICNS, multi-size ICO and PNG representations pass format checks; macOS sips decodes the ICNS at 1024 pixels."
+    },
+    {
+      "id": "B2",
+      "name": "Offline animated installer guide",
+      "category": "Branding and launcher animation",
+      "status": "done",
+      "evidence": "Start here.html has mascot, eye, sparkle and arrow animations, working pause/resume controls, local assets and reduced-motion CSS. DOM interaction checks pass. Finder installation is checked separately in #231."
+    },
+    {
+      "id": "B3",
+      "name": "Dock and taskbar animation controls",
+      "category": "Branding and launcher animation",
+      "status": "done",
+      "evidence": "32 distinct frames, macOS Dock updates and Windows window/overlay updates. Tests cover frame cadence, busy tasks, settings/OS reduced motion, close/reopen, cleanup and missing native assets. Appearance controls persist through the UI. Native rendering remains user checks #229/#230."
+    },
+    {
+      "id": "B4",
+      "name": "Gen Z installer artwork and packaging configuration",
+      "category": "Branding and launcher animation",
+      "status": "done",
+      "evidence": "Retina DMG background and 24-bit NSIS header/sidebar assets validated; macOS and Windows builds use Kairo icons and shortcut names. Animated guide included in DMG contents. Actual installation remains #231/#232/#233."
+    }
+  ]
+}

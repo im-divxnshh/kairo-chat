@@ -1,0 +1,14 @@
+simulation: kairo-cloud-contract
+routing: path
+mocks:
+  - name: firebase
+    routeKey: firebase
+    origin:
+      - identitytoolkit.googleapis.com
+      - securetoken.googleapis.com
+      - firestore.googleapis.com
+    path: postman/mocks/firebase/config.yaml
+  - name: r2
+    routeKey: r2
+    origin: storage.kairo.test
+    path: postman/mocks/r2/config.yaml

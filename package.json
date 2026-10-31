@@ -1,0 +1,149 @@
+{
+  "name": "kairo",
+  "version": "0.2.0",
+  "description": "Your AI workspace. Your CLI. Your flow. A desktop app for Codex, Claude Code, and Ollama with projects, Git, agent workflows, and Firebase sync.",
+  "main": "src/main.js",
+  "scripts": {
+    "build:brand": "node scripts/build-brand.js",
+    "build:native": "node scripts/build-native.js",
+    "prestart": "node scripts/build-native.js",
+    "start": "electron .",
+    "dist:mac": "electron-builder --mac dmg",
+    "dist:mac:x64": "electron-builder --mac dmg --x64",
+    "dist:mac:arm64": "electron-builder --mac dmg --arm64",
+    "dist:win": "electron-builder --win nsis",
+    "test": "node --test tests/*.test.js",
+    "check": "node scripts/check.js",
+    "progress": "node scripts/progress.js",
+    "dist:win:msi": "electron-builder --win msi",
+    "test:cloud": "node --test tests/cloud.test.js tests/worker.test.js",
+    "test:ui": "node --test tests/ui.test.js",
+    "verify:cloud": "node scripts/verify-cloud.js",
+    "verify:cli": "node scripts/verify-cli.js",
+    "deploy:cloud": "node scripts/deploy-cloud.js",
+    "simulate:cloud": "postman simulation run postman/simulations/kairo.sim.yaml --port 4010 --no-history --output ndjson"
+  },
+  "devDependencies": {
+    "electron": "^37.2.0",
+    "electron-builder": "^26.0.12",
+    "jsdom": "16.7.0"
+  },
+  "build": {
+    "beforePack": "./scripts/before-pack.js",
+    "appId": "com.kairo.chat",
+    "productName": "Kairo",
+    "directories": {
+      "output": "release"
+    },
+    "asarUnpack": [
+      "src/native/kairo-pdf",
+      "src/native/kairo-speech",
+      "src/native/*.ps1"
+    ],
+    "files": [
+      "src/**/*",
+      "docs/features.json",
+      "FEATURES.md",
+      "package.json",
+      "!.env*",
+      "!firebase.config.json",
+      "!cloudflare/.dev.vars",
+      "docs/FIREBASE_R2_SETUP.md",
+      "docs/API_CONTRACT.md",
+      "docs/USER_CHECKS.md",
+      "docs/BRANDING.md",
+      "README.md",
+      "LICENSE"
+    ],
+    "mac": {
+      "icon": "build/icon.icns",
+      "extendInfo": {
+        "NSMicrophoneUsageDescription": "Kairo uses your microphone when you start dictation.",
+        "NSSpeechRecognitionUsageDescription": "Kairo uses on-device speech recognition to turn dictation into a message."
+      },
+      "target": [
+        "dmg"
+      ],
+      "category": "public.app-category.productivity"
+    },
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        "nsis",
+        "msi"
+      ]
+    },
+    "dmg": {
+      "title": "Install Kairo",
+      "artifactName": "Kairo-${version}-${arch}.${ext}",
+      "background": "build/dmg-background.png",
+      "icon": "build/icon.icns",
+      "badgeIcon": "build/icon.icns",
+      "iconSize": 116,
+      "iconTextSize": 13,
+      "window": {
+        "width": 900,
+        "height": 600
+      },
+      "contents": [
+        {
+          "x": 235,
+          "y": 337
+        },
+        {
+          "x": 630,
+          "y": 337,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 800,
+          "y": 480,
+          "type": "file",
+          "path": "build/Start here.html"
+        }
+      ]
+    },
+    "nsis": {
+      "artifactName": "Kairo-Setup-${version}-${arch}.${ext}",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "installerHeader": "build/installer-header.bmp",
+      "installerSidebar": "build/installer-sidebar.bmp",
+      "uninstallerSidebar": "build/installer-sidebar.bmp",
+      "shortcutName": "Kairo",
+      "uninstallDisplayName": "Kairo",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "msi": {
+      "artifactName": "Kairo-Setup-${version}-${arch}.${ext}",
+      "shortcutName": "Kairo"
+    }
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/im-divxnshh/kairo-chat.git"
+  },
+  "homepage": "https://github.com/im-divxnshh/kairo-chat#readme",
+  "bugs": {
+    "url": "https://github.com/im-divxnshh/kairo-chat/issues"
+  },
+  "keywords": [
+    "ai-workspace",
+    "electron",
+    "codex",
+    "claude-code",
+    "ollama",
+    "mcp",
+    "firebase",
+    "cloudflare-r2",
+    "developer-tools"
+  ]
+}

@@ -1,0 +1,44 @@
+purpose:
+  stands_in_for: Firebase Authentication and Firestore REST plus the private Kairo R2 Worker.
+  unblocks: Repeatable local client contract checks without production accounts or objects, on hosts allowing listening ports.
+assumptions:
+  - id: firebase-authentication-tokens
+    status: supported
+    claim: The configured production Firebase project accepts email/password registration and login and returns tokens usable for refresh and account lookup.
+    reason: The user ran all disposable-account live verification checks successfully against the configured deployment.
+    verification: On 2026-10-31 the live report passed signup, sign-in, refresh, lookup and cleanup. Earlier local contract doubles only supported client serialization; they did not establish production behavior.
+    source: test-results/cloud-verification.json; src/lib/cloud-verification.js; tests/cloud.test.js; docs/API_CONTRACT.md
+    updated_at: "2026-10-31"
+  - id: firestore-preconditions-and-owner-rules
+    status: supported
+    claim: The deployed project accepts private record writes and optimistic preconditions and denies anonymous, cross-account and invalid-schema requests in the verified cases.
+    reason: Live checks passed after the user uploaded the supplied Firestore rules.
+    verification: On 2026-10-31 all owner/schema/precondition checks passed. Server timestamp and incremental-query serialization also have local contract coverage; the stand-in is not independent evidence of every Firebase guarantee.
+    source: test-results/cloud-verification.json; firestore.rules; tests/cloud.test.js; docs/API_CONTRACT.md
+    updated_at: "2026-10-31"
+  - id: r2-private-prefix
+    status: supported
+    claim: The deployed kairo-chat Worker denies unauthenticated and cross-account object access while allowing owner upload, metadata, download, encrypted restore and cleanup.
+    reason: The verified deployment binds the user's private bucket and Firebase project, with all 20 live checks passing.
+    verification: On 2026-10-31 the user ran full production verification. Earlier stand-in tokens only modeled identity and did not prove real signature validity; local Worker tests separately verify RS256 JWT validation and bounded body handling.
+    source: test-results/cloud-verification.json; cloudflare/worker.mjs; tests/worker.test.js; docs/API_CONTRACT.md
+    updated_at: "2026-10-31"
+  - id: configuration-and-ai-credentials
+    status: supported
+    claim: Cloud configuration comes from private environment variables and AI configuration comes from native Claude settings.json or Codex config.toml without direct OpenAI API calls.
+    reason: The application no longer supports direct API profiles; configuration and migration tests verify native file precedence and cloud credential isolation.
+    verification: Configuration/subprocess tests pass. The original context's claim that provider credentials came from application environment variables is historical and was superseded by the user's native CLI requirement. The user confirmed a Codex live response. Claude normal-mode verification detected authentication but timed out at 60 seconds on 2026-10-31. A local safe-mode attempt reached the request phase and timed out at 10 seconds in the network-restricted workspace; that result does not establish whether the user’s gateway is available. The user subsequently ran safe mode for 120 seconds; it also timed out during the request. The user then deferred Claude and chose Codex only for now. KAIRO_ACTIVE_PROVIDER=codex restricts this device’s runtime view and dispatch without changing native credentials or saved history. Live Claude remains deferred until the user returns to it.
+    source: src/lib/env.js; src/lib/providers.js; tests/configuration.test.js; tests/providers.test.js; docs/USER_CHECKS.md
+    updated_at: "2026-10-31"
+  - id: simulation-execution
+    status: unknown
+    claim: The Postman simulation serves the real client requests with the expected response and state behavior on a host permitting listening sockets.
+    reason: This workspace prohibits local listening ports, so no Postman server run established interception or request outcomes.
+    verification: Earlier simulation startup failed with EPERM. In-process doubles exercise client contracts, but do not constitute a successful Postman simulation. Official provider documentation could not be fetched here because DNS is restricted; live checks now support the deployment cases listed above. Run the simulation on an unrestricted host to settle this claim.
+    source: postman/simulations/kairo.sim.yaml; postman/mocks/firebase/default.js; postman/mocks/r2/default.js; tests/cloud.test.js
+    updated_at: "2026-10-31"
+fingerprints:
+  - id: kairo-0.2.0-local-and-user-live
+    date: "2026-10-31"
+    commit: null
+    cli: Node 24; local Postman startup blocked; user Wrangler 4.156.0 deployed kairo-chat.

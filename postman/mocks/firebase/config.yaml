@@ -1,0 +1,10 @@
+version: 1
+name: firebase-contract
+origin:
+  - identitytoolkit.googleapis.com
+  - securetoken.googleapis.com
+  - firestore.googleapis.com
+interceptRequests: true
+scenarios:
+  - name: default
+    path: default.js

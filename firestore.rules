@@ -1,0 +1,29 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function owns(uid) { return request.auth != null && request.auth.uid == uid; }
+    match /users/{uid}/records/{recordId} {
+      allow read, delete: if owns(uid);
+      allow create, update: if owns(uid)
+        && request.resource.data.keys().hasOnly(['type', 'id', 'payload', 'chunks', 'deleted', 'schemaVersion', 'modifiedAt'])
+        && request.resource.data.type is string
+        && request.resource.data.type in ['settings', 'conversations', 'projects', 'providers', 'memories', 'prompts', 'knowledge', 'agents', 'workflows', 'schedules', 'mcpServers', 'skills', 'attachments', 'activity', 'runs', 'notifications', 'backups']
+        && request.resource.data.id is string
+        && recordId == request.resource.data.type + '--' + request.resource.data.id
+        && request.resource.data.payload is string
+        && request.resource.data.payload.size() < 900000
+        && request.resource.data.chunks is list
+        && request.resource.data.chunks.size() <= 80
+        && request.resource.data.deleted is bool
+        && request.resource.data.schemaVersion == 1
+        && request.resource.data.modifiedAt == request.time;
+      match /chunks/{chunkId} {
+        allow read, delete: if owns(uid);
+        allow create, update: if owns(uid)
+          && request.resource.data.keys().hasOnly(['payload'])
+          && request.resource.data.payload is string
+          && request.resource.data.payload.size() < 900000;
+      }
+    }
+  }
+}
