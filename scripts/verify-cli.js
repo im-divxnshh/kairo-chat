@@ -36,7 +36,7 @@ async function main() {
       const status = await P.health(provider); console.log(`${kind}: ${status.authentication}; native configuration ${status.configExists?'found':'missing'}`);
       const detail = diagnostic(provider); if (detail) console.log(detail);
       console.log(`Response timeout: ${opt.timeout}s${opt.safeMode ? '; Claude safe mode enabled (customizations disabled)' : ''}`);
-      if (!status.healthy) throw new Error('CLI unavailable.');
+      if (!status.healthy) throw new Error(status.error || 'CLI unavailable.');
       const result = await P.runProvider(provider,{
         prompt:'Reply with exactly KAIRO_OK. Do not use any tools.',temporary:true,safeMode:opt.safeMode,settings:{...C.defaults,cliTimeoutSeconds:opt.timeout},
         onEvent:type => {if (['system','thread.started'].includes(type)) initialized = true;},onChunk:()=>{responseStarted=true;}

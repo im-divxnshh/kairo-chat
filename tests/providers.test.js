@@ -1,6 +1,42 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),os=require('node:os'),path=require('node:path');
 const {writeCLI}=require('./fixtures/cli');
 const {streamEvents,runProvider,runHTTP}=require('../src/lib/providers'),C=require('../src/lib/core');
+test('Finder-style launches resolve node for CLI version checks and chat subprocesses',{skip:process.platform==='win32'},async()=>{
+  const {spawnSync}=require('node:child_process'),{health}=require('../src/lib/providers');
+  const directory=fs.mkdtempSync(path.join(os.tmpdir(),'kairo-finder-path-')),file=path.join(directory,'claude'),settingsFile=path.join(directory,'settings.json'),oldPath=process.env.PATH;
+  try{
+    fs.symlinkSync(process.execPath,path.join(directory,'node'));fs.writeFileSync(settingsFile,'{}');
+    writeCLI(file,`#!/usr/bin/env node\nif(process.argv.includes('--version')){console.log('fixture CLI');process.exit(0);}if(process.argv.includes('auth')){console.log('{"loggedIn":true}');process.exit(0);}let input='';process.stdin.on('data',chunk=>input+=chunk);process.stdin.on('end',()=>console.log(JSON.stringify({type:'result',result:input,usage:{output_tokens:1}})));\n`);
+    const limited=path.join(directory,'empty-path');fs.mkdirSync(limited);
+    const broken=spawnSync(file,['--version'],{env:{...process.env,PATH:limited},encoding:'utf8'});assert.notEqual(broken.status,0);assert.match(broken.stderr,/node/);
+    process.env.PATH=limited;
+    const provider={id:'finder-fixture',name:'Finder fixture',kind:'claude',executable:file,configFile:settingsFile,enabled:true};
+    const status=await health(provider);assert.equal(status.healthy,true);assert.equal(status.authentication,'authenticated');
+    const result=await runProvider(provider,{prompt:'Chat launched from Finder',settings:{...C.defaults,cliTimeoutSeconds:10}});assert.equal(result.content,'Chat launched from Finder');
+  }finally{if(oldPath===undefined)delete process.env.PATH;else process.env.PATH=oldPath;fs.rmSync(directory,{recursive:true,force:true});}
+});
+
+test('CLI discovery and subprocess PATH include nvm installations without loading a shell profile',()=>{
+  const {searchDirectories,executionEnvironment}=require('../src/lib/process-path'),{executable}=require('../src/lib/providers');
+  const directory=fs.mkdtempSync(path.join(os.tmpdir(),'kairo-node-discovery-')),oldNvm=process.env.NVM_DIR;
+  try{
+    const root=path.join(directory,'nvm'),newer=path.join(root,'versions/node/v22.12.0/bin'),older=path.join(root,'versions/node/v22.9.0/bin');fs.mkdirSync(newer,{recursive:true});fs.mkdirSync(older,{recursive:true});
+    const dirs=searchDirectories({env:{PATH:'/usr/bin:/bin',NVM_DIR:root},home:directory,platform:'darwin',runtimePath:''});assert.ok(dirs.includes(newer));assert.ok(dirs.indexOf(newer)<dirs.indexOf(older));assert.ok(dirs.includes('/opt/homebrew/bin'));assert.ok(dirs.includes('/usr/local/bin'));
+    const name='kairo-fixture-node-tool',file=path.join(newer,name+(process.platform==='win32'?'.cmd':''));fs.writeFileSync(file,'fixture',{mode:0o755});process.env.NVM_DIR=root;
+    if(process.platform!=='win32')assert.equal(executable(name),file);
+    const env=executionEnvironment({PATH:path.join(directory,'inherited'),Path:'duplicate',NVM_DIR:root,KAIRO_TEST:'kept'},file);assert.equal(env.PATH.split(path.delimiter)[0],newer);assert.equal(env.Path,undefined);assert.equal(env.KAIRO_TEST,'kept');
+  }finally{if(oldNvm===undefined)delete process.env.NVM_DIR;else process.env.NVM_DIR=oldNvm;fs.rmSync(directory,{recursive:true,force:true});}
+});
+
+test('missing Node produces actionable CLI diagnostics',{skip:process.platform==='win32'},async()=>{
+  const {health}=require('../src/lib/providers'),directory=fs.mkdtempSync(path.join(os.tmpdir(),'kairo-missing-node-')),file=path.join(directory,'claude'),settingsFile=path.join(directory,'settings.json');
+  try{
+    fs.writeFileSync(file,"#!/bin/sh\nprintf 'env: node: No such file or directory\\n' >&2\nexit 127\n",{mode:0o755});fs.writeFileSync(settingsFile,'{}');
+    const provider={id:'missing-node',name:'Missing Node fixture',kind:'claude',executable:file,configFile:settingsFile};
+    const status=await health(provider);assert.equal(status.healthy,false);assert.match(status.error,/Install Node.js 22/);
+    await assert.rejects(runProvider(provider,{prompt:'Hi',settings:C.defaults}),/Install Node.js 22/);
+  }finally{fs.rmSync(directory,{recursive:true,force:true});}
+});
 test('Claude text deltas are not duplicated by final assistant messages; usage and errors are preserved',()=>{let emitted='';const p=streamEvents('claude',chunk=>emitted+=chunk);p.consume({type:'stream_event',event:{delta:{type:'text_delta',text:'Hello '}}});p.consume({type:'stream_event',event:{delta:{type:'text_delta',text:'world'}}});p.consume({type:'assistant',message:{content:[{type:'text',text:'Hello world'}]}});p.consume({type:'result',usage:{input_tokens:10,output_tokens:3},total_cost_usd:0.01});assert.equal(emitted,'Hello world');assert.equal(p.result().usage.input_tokens,10);p.consume({type:'result',is_error:true,result:'Denied'});assert.equal(p.result().terminalError,'Denied');});
 test('Codex agent messages and turn usage are parsed without showing tool JSON',()=>{let emitted='';const p=streamEvents('codex',chunk=>emitted+=chunk);p.consume({type:'item.completed',item:{type:'command_execution',aggregated_output:'hidden tool result'}});p.consume({type:'item.completed',item:{type:'agent_message',text:'Answer'}});p.consume({type:'turn.completed',usage:{input_tokens:7,output_tokens:2}});assert.equal(emitted,'Answer');assert.equal(p.result().usage.output_tokens,2);});
 test('real child process CLI transport uses stdin, preserves Unicode and honors stop generation',async()=>{const directory=fs.mkdtempSync(path.join(os.tmpdir(),'kairo-provider-test-')),file=path.join(directory,process.platform==='win32'?'claude.cmd':'claude');writeCLI(file,`#!/usr/bin/env node\nlet input='';process.stdin.on('data',c=>input+=c);process.stdin.on('end',()=>{if(input==='wait'){setInterval(()=>{},1000);return;}for(const event of [{type:'stream_event',event:{delta:{type:'text_delta',text:'Hello 🌍'}}},{type:'result',usage:{input_tokens:5,output_tokens:2}}]){const bytes=Buffer.from(JSON.stringify(event)+'\\n');for(const byte of bytes)process.stdout.write(Buffer.from([byte]));}});\n`,{mode:0o755});try{let chunks='';const provider={id:'fixture',name:'Fixture CLI',kind:'claude',executable:file,args:[]};const result=await runProvider(provider,{prompt:'input only over stdin',cwd:directory,settings:{...C.defaults,cliTimeoutSeconds:10},onChunk:c=>chunks+=c});assert.equal(result.content,'Hello 🌍');assert.equal(chunks,'Hello 🌍');const controller=new AbortController();setTimeout(()=>controller.abort(),100);await assert.rejects(runProvider(provider,{prompt:'wait',cwd:directory,settings:C.defaults,signal:controller.signal}),/stopped/);}finally{fs.rmSync(directory,{recursive:true,force:true});}});

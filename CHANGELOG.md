@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.2
+
+- Fix CLI launches from Finder when Node.js is installed outside the GUI application's inherited PATH.
+- Share executable search paths with subprocesses, including Homebrew, nvm, fnm, Volta, asdf, mise, and the selected CLI's directory.
+- Show an actionable Node installation message when a Node-based CLI cannot start.
+
 ## 0.2.1
 
 - Add first-run backend setup for installed apps. Users enter their own Firebase settings and optional R2 Worker URL without an environment file.

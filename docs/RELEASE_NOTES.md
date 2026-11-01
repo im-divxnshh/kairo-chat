@@ -1,4 +1,4 @@
-# Draft: Kairo v0.2.1
+# Draft: Kairo v0.2.2
 
 This is a maintainer template, not a published-release announcement. Update validation and attach verified installers before publishing.
 
@@ -7,6 +7,9 @@ This is a maintainer template, not a published-release announcement. Update vali
 Kairo brings chat, project context, Git, and agent workflows into one Electron desktop app with an original animated mascot.
 
 ### Highlights
+
+- Fix Node-based CLI launch errors when Kairo is opened from Finder.
+- Discover common Node installations and pass their paths to CLI subprocesses.
 
 - First-run backend setup: enter your own Firebase settings and R2 Worker URL inside the app; settings persist across restarts without `.env`.
 - OS-protected storage for backend settings and optional backup passphrases.
@@ -24,7 +27,7 @@ This release requires your own Firebase configuration and provider authenticatio
 
 ### Release validation
 
-Local evidence for 0.2.1: all 80 tests and syntax/asset checks passed. The x64 native helpers and unsigned macOS app bundle built successfully; the bundle contains backend setup and excludes private configuration. DMG creation failed in the workspace with `hdiutil: create failed - Device not configured`. An unsigned ZIP of the app is available as a local alternative. Native installation, keychain behavior, Windows builds and a new live cloud run remain unverified here.
+Local evidence for 0.2.2: regression tests reproduce a Node-based CLI failing with a minimal PATH, then verify Kairo can run its version check and chat request. Installed Codex was also checked with a Finder-style PATH. This verifies process launching, not a live model response. All 83 local tests and syntax/asset checks passed. The installed Codex CLI failed directly with PATH=/usr/bin:/bin and succeeded through Kairo with the same input environment, returning codex-cli 0.166.0. The unsigned macOS x64 app bundle built successfully and its archive was verified to include the PATH fix and backend setup without private configuration. A ZIP is prepared for local installation. Native Finder interaction, OS keychain behavior, Windows installation and a new live cloud run remain separate release checks.
 
 Before publishing, replace this checklist with the actual evidence:
 

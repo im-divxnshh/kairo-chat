@@ -60,3 +60,8 @@ Installed clients configure their own Firebase project and optional R2 Worker th
 - Invalid input, locked secure storage, and write failures surface an error. A save does not provision Firebase, deploy rules, create R2 resources, or prove live connectivity; the following login exercises the chosen backend.
 
 The configuration tests verify persistence and storage boundaries; the Electron backend test starts as a packaged installation with no environment file, saves configuration, signs in against contract doubles, reloads settings after restart, and signs in again. DOM tests cover the setup form and login becoming available. These tests do not establish native keychain behavior or live account access.
+## CLI launch environment
+
+Executable discovery and subprocess launches share the search directories in `src/lib/process-path.js`. The selected CLI's directory is added first, inherited paths are preserved, and common system/Node installations are added for GUI launches. Shell startup files are not sourced. Existing CLI arguments, stdin conversation payloads and permission modes remain unchanged; application cloud credentials are still stripped before launching providers or MCP servers.
+
+The provider regression tests reproduce a Node-based CLI failing without Node on PATH, then verify health checks and chat subprocesses succeed through Kairo. A read-only installed Codex version check was also exercised with a Finder-style PATH. These checks establish interpreter discovery and process startup, rather than a live model response.

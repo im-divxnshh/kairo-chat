@@ -4,6 +4,7 @@ const path = require('node:path');
 const { spawn } = require('node:child_process');
 const { StringDecoder } = require('node:string_decoder');
 const core = require('./core');
+const { searchDirectories, executionEnvironment } = require('./process-path');
 
 function executable(name, custom = '') {
   if (custom) {
@@ -11,8 +12,7 @@ function executable(name, custom = '') {
     fs.accessSync(custom, process.platform === 'win32' ? fs.constants.F_OK : fs.constants.X_OK);
     return custom;
   }
-  const home = os.homedir();
-  const directories = [...(process.env.PATH || '').split(path.delimiter), '/opt/homebrew/bin', '/usr/local/bin', path.join(home, '.local/bin'), path.join(home, '.npm-global/bin'), path.join(home, '.volta/bin'), path.join(process.env.APPDATA || path.join(home, 'AppData/Roaming'), 'npm'), path.join(home, 'scoop/shims')];
+  const directories = searchDirectories();
   for (const directory of directories.filter(Boolean)) for (const suffix of process.platform === 'win32' ? ['.exe', '.cmd', '.bat', ''] : ['']) {
     const file = path.join(directory, name + suffix);
     try { fs.accessSync(file, process.platform === 'win32' ? fs.constants.F_OK : fs.constants.X_OK); return file; } catch { /* next candidate */ }
@@ -20,6 +20,7 @@ function executable(name, custom = '') {
   return null;
 }
 function spawnCLI(file, args, options = {}) {
+  options = { ...options, env: executionEnvironment(options.env || process.env, file) };
   if (process.platform === 'win32' && /\.(cmd|bat)$/i.test(file)) {
     // Windows batch shims require cmd.exe. Prompt content only travels over stdin.
     const quote = value => { if (/["&|<>^%!\r\n]/.test(value)) throw new Error('Unsafe character in Windows executable or argument. Use an .exe path.'); return `"${value}"`; };
@@ -63,7 +64,11 @@ function providerEnvironment(provider) {
     env[provider.kind === 'codex' ? 'CODEX_HOME' : 'CLAUDE_CONFIG_DIR'] = provider.configDir;
   }
   if (provider.kind === 'codex' && provider.configFile) env.CODEX_HOME = configuration(provider).directory;
-  return env;
+  return executionEnvironment(env, provider.executable || '');
+}
+function cliError(message, fallback) {
+  if (/env:.*node.*(?:No such file or directory|not found)/i.test(message) || /['"]node['"] is not recognized/i.test(message)) return new Error('This CLI needs Node.js, but Kairo cannot find it. Install Node.js 22 or later and reopen Kairo. If Node is already installed, select the CLI executable from that Node installation in Settings → Providers.');
+  return new Error(message || fallback);
 }
 async function health(provider, getKey = () => '') {
   core.validateEntity('providers', provider);
@@ -74,6 +79,7 @@ async function health(provider, getKey = () => '') {
     if (!file) return { ...status, error: 'CLI not found. Set a custom executable path or install the CLI.' };
     const env = providerEnvironment(provider);
     const version = await runFile(file, ['--version'], { env }); status.version = version.stdout || version.stderr; status.healthy = version.code === 0;
+    if (!status.healthy) return { ...status, error: cliError(version.stderr || version.stdout, 'CLI version check failed.').message };
     try {
       const result = await runFile(file, provider.kind === 'codex' ? ['login', 'status'] : ['auth', 'status', '--json'], { env });
       if (provider.kind === 'claude') { const data = JSON.parse(result.stdout); status.authentication = data.loggedIn === true ? 'authenticated' : data.loggedIn === false ? 'signed out' : 'unknown'; }
@@ -181,7 +187,7 @@ async function runProvider(provider, { prompt, messages = [], images = [], cwd =
     child.stdout.on('data', chunk => { pending += decoder.write(chunk); const lines = pending.split('\n'); pending = lines.pop(); for (const value of lines) line(value); if (pending.length > 8 * 1024 * 1024) { kill(); finish(new Error('CLI event exceeds output limit.')); } });
     child.stderr.on('data', chunk => { stderr = (stderr + chunk).slice(-16000); });
     child.on('error', e => finish(e));
-    child.on('close', code => { pending += decoder.end(); line(pending); if (!settled) finish(code === 0 ? null : Object.assign(new Error(stderr.trim() || `${provider.name} exited with code ${code}.`), {code:'KAIRO_CLI_EXIT'})); clearTimeout(exitTimer); });
+    child.on('close', code => { pending += decoder.end(); line(pending); if (!settled) finish(code === 0 ? null : Object.assign(cliError(stderr.trim(), `${provider.name} exited with code ${code}.`), {code:'KAIRO_CLI_EXIT'})); clearTimeout(exitTimer); });
     child.stdin.on('error', () => {});
     const input = (images.length || capability === 'agent') && provider.kind === 'claude' ? JSON.stringify({ type: 'user', message: { role: 'user', content: [{ type: 'text', text: prompt }, ...images.map(img => ({ type: 'image', source: { type: 'base64', media_type: img.dataURL.split(';')[0].slice(5), data: img.dataURL.split(',')[1] } }))] } }) + '\n' : prompt;
     if (provider.kind === 'claude' && capability === 'agent') child.stdin.write(input); else child.stdin.end(input);

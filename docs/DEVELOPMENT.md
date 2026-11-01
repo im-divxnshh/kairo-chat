@@ -17,6 +17,8 @@
 
 ## Providers and permissions
 
+CLI discovery and subprocess execution share the same search paths. Kairo supplements the inherited PATH with common Node and package-manager locations, discovered nvm/fnm installations, and the selected executable's directory. This supports launching from Finder without sourcing shell startup files. See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for missing-Node errors.
+
 AI-provider authentication is separate from Firebase login. Provider executable paths, native configuration paths, and model overrides can be configured in the app. Leave model overrides empty to honor the CLI's configuration.
 
 Conversation context travels over stdin to the selected CLI. Chat runs with tools disabled and Codex's read-only sandbox. Research enables web tools. Coding workflows use the selected project and request edit permission.

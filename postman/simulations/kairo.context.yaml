@@ -37,6 +37,14 @@ assumptions:
     verification: On 2026-11-01 Postman CLI 1.75.0 simulation startup again failed with listen EPERM on 127.0.0.1 before it could intercept any requests. Earlier simulation startup also failed with EPERM. In-process doubles exercise client contracts, but do not constitute a successful Postman simulation. Official provider documentation could not be fetched here because DNS is restricted; live checks now support the deployment cases listed above. Run the simulation on an unrestricted host to settle this claim.
     source: postman/simulations/kairo.sim.yaml; postman/mocks/firebase/default.js; postman/mocks/r2/default.js; tests/cloud.test.js
     updated_at: "2026-11-01"
+  - id: node-cli-launch-environment
+    status: supported
+    claim: In the tested macOS installation, Kairo can start the installed Node-based Codex CLI with a Finder-style minimal PATH by supplementing executable search paths.
+    reason: A direct version check failed with the reported missing-node error while the same installed executable succeeded through Kairo with the same input PATH.
+    verification: On 2026-11-01 direct launch with PATH=/usr/bin:/bin exited 127 with env node not found. Kairo runFile returned exit 0 and codex-cli 0.166.0. Fixture tests also covered CLI health and chat subprocesses, nvm discovery and actionable missing-Node errors; all 83 local tests passed. No live model request, native Finder launch or Windows installation was verified by these checks. The HTTP dependency contracts were unchanged, so the earlier Postman simulation limitation remains applicable.
+    source: src/lib/process-path.js; src/lib/providers.js; tests/providers.test.js; docs/TROUBLESHOOTING.md
+    updated_at: "2026-11-01"
+
 fingerprints:
   - id: kairo-0.2.0-local-and-user-live
     date: "2026-10-31"
@@ -47,3 +55,7 @@ fingerprints:
     date: "2026-11-01"
     commit: "525f36df08ae66da1b7a0bb58a8967739ffa9095 (dirty working tree; backend setup changes)"
     cli: Node 24; Postman 1.75.0; 80 local tests passed; Postman simulation startup blocked by listening-socket restrictions.
+  - id: kairo-0.2.2-cli-path-local
+    date: "2026-11-01"
+    commit: "833cb1b0e2e3e1afa8786efda407c5a6f9dab83a (dirty working tree; CLI PATH changes)"
+    cli: Node from /usr/local/bin/node; installed Codex 0.166.0; Postman 1.75.0 unchanged from prior fingerprint.

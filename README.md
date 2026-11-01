@@ -28,7 +28,7 @@ Your ideas deserve somewhere better than twelve tabs and a forgotten terminal.
 
 Kairo brings AI conversations, project files, Git, prompts, and agent workflows into one Electron app. Keep using your own authenticated CLI providers, organize your work, and let the lime-and-lavender mascot handle the vibes.
 
-**Early release: v0.2.1.** macOS and Windows are the packaging targets. Native desktop checks and some live integrations still need verification; see the [feature status](FEATURES.md) and [platform checklist](docs/USER_CHECKS.md). Linux installers are not configured.
+**Early release: v0.2.2.** macOS and Windows are the packaging targets. Native desktop checks and some live integrations still need verification; see the [feature status](FEATURES.md) and [platform checklist](docs/USER_CHECKS.md). Linux installers are not configured.
 
 ## ✨ The good stuff
 
@@ -135,6 +135,7 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md), follow the [code of conduct](CODE_OF_CO
 | Guide | What's inside |
 | --- | --- |
 | [Cloud setup](docs/FIREBASE_R2_SETUP.md) | Firebase, R2, environment variables, emulators, and live verification. |
+| [Troubleshooting](docs/TROUBLESHOOTING.md) | CLI launch errors, Node discovery, and installed-app recovery. |
 | [Development notes](docs/DEVELOPMENT.md) | Project layout, provider behavior, MCP, updates, and packaged configuration. |
 | [Feature status](FEATURES.md) | Implemented features and remaining verification work. |
 | [API contract](docs/API_CONTRACT.md) | Firestore records, Worker endpoints, and verification boundaries. |
