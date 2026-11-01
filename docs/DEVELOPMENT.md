@@ -35,9 +35,13 @@ Projects synced from another device must be reopened locally before file and Git
 
 ## Installed-app configuration
 
-Installers exclude environment files. For a packaged app, set `KAIRO_ENV_FILE` to the absolute path of your private environment file, or put `.env` in the app's user-data directory. Restart after changing variables. Process environment values override file values.
+Installed apps offer **Set up my backend** before login. The trusted `cloud:configure` IPC operation validates Firebase settings and the R2 URL, then saves them in `cloud-settings.json` in Electron's user-data directory. Settings apply immediately and reload at startup, so users do not need an environment file.
 
-The desktop does not require an R2 access key or a Firebase service-account private key. See [FIREBASE_R2_SETUP.md](FIREBASE_R2_SETUP.md) for supported configuration.
+The saved payload contains an allowlist of Firebase web app settings, an optional R2 Worker URL, and an optional backup passphrase. OS secure storage protects the complete payload when available. Without it, the app stores only the non-secret web app settings and URL; saving a backup passphrase fails. `cloud:settings` never returns the saved passphrase. Configuration is excluded from conversation sync and settings exports.
+
+Backend changes require sign-out. Saved configuration overrides cloud environment values; provider CLI overrides remain separate. Environment files are still supported for development or advanced deployments using `KAIRO_ENV_FILE`.
+
+The desktop does not require R2 access keys or a Firebase service-account private key. See [FIREBASE_R2_SETUP.md](FIREBASE_R2_SETUP.md) for supported configuration.
 
 ## Speech, tasks, and updates
 

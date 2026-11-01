@@ -1638,7 +1638,7 @@
       "name": "Firebase project configuration",
       "category": "Firebase authentication and database",
       "status": "done",
-      "evidence": "Implemented and verified by Firebase REST contract tests, Electron backend integration tests and DOM account controls; live project deployment is still required."
+      "evidence": "Implemented and verified by Firebase REST contract tests, packaged Electron backend integration tests and DOM account controls. Users save their own Firebase/R2 settings inside the app without .env; local restart and protected-storage checks pass. Live project deployment is still required."
     },
     {
       "id": "F2",

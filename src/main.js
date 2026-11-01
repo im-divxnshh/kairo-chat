@@ -11,6 +11,7 @@ const providers = require('./lib/providers');
 const workspace = require('./lib/workspace');
 const mcp = require('./lib/mcp');
 const environment = require('./lib/env');
+const { CloudSettings, validateSettings: validateCloudSettings, applySettings: applyCloudSettings } = require('./lib/cloud-settings');
 const { R2Storage } = require('./lib/r2');
 const runtime = require('./lib/runtime');
 const knowledge = require('./lib/knowledge');
@@ -20,6 +21,7 @@ const updates = require('./lib/updates');
 let firebase = null, store = null, config = null, dataDir, syncTimer, backupTimer, scheduleTimer, healthTimer;
 let r2 = null, syncDebounce = null;
 let booting = true, startupError = '';
+let cloudSettings = null, cloudSettingsSource = 'environment variables';
 const activeRuns = new Map(), grantedRoots = new Set(), attachmentPaths = new Map(), providerHealth = new Map();
 branding.applyIdentity(app);
 const launcher = branding.createLauncher({app,BrowserWindow,nativeImage,systemPreferences,settings:()=>store?.state.settings || core.defaults,busy:()=>activeRuns.size>0});
@@ -61,7 +63,7 @@ async function checkProvider(s, provider) {
   if (previous?.healthy && (!status.healthy || status.authentication === 'signed out') && previous.authentication !== 'signed out') notify('CLI disconnected', provider.name + ': ' + (status.error || 'Sign in to your CLI again.'), 'disconnected');
   return status;
 }
-function authState() { return { configured: !!config, booting, startupError, environment: environment.publicEnvironment(), user: firebase?.publicSession() || null, sessionPersistence, sync: store?.status() || null }; }
+function authState() { return { configured: !!config, booting, startupError, environment: { ...environment.publicEnvironment(), source: cloudSettingsSource }, user: firebase?.publicSession() || null, sessionPersistence, sync: store?.status() || null }; }
 function activity(s, title, projectId = '', content = '') { if (store === s) s.upsert('activity', { id: core.uid(), title, projectId, content, createdAt: Date.now() }); }
 function requestPermission(event, requestId, input, signal) {
   return new Promise(resolve => {
@@ -159,7 +161,7 @@ async function attachPaths(paths, { folder = false } = {}) {
   for (const attachment of attachments) attachmentPaths.set(attachment.id, attachment.path);
   return attachments;
 }
-function requireR2() { if (!r2) throw new Error('Set KAIRO_R2_WORKER_URL in .env and restart the app to use R2 file storage.'); return r2; }
+function requireR2() { if (!r2) throw new Error('Add your R2 Worker URL in Backend setup to use cloud file storage.'); return r2; }
 async function prepareRecord(type, item) {
   core.validateEntity(type, item);
   if (type === 'conversations') {
@@ -272,6 +274,17 @@ async function runSchedules() {
 const operations = {
   'app:bootstrap': () => ({ auth: authState(), state: environment.activeState(store?.snapshot() || core.initialState()), health: [...providerHealth.values()], features: JSON.parse(fs.readFileSync(path.join(__dirname, '../docs/features.json'))), version: app.getVersion() }),
   'app:setupGuide': () => fs.readFileSync(path.join(__dirname, '../docs/FIREBASE_R2_SETUP.md'), 'utf8'),
+  'cloud:settings': () => ({ firebase: config || environment.firebaseConfig(), r2WorkerUrl: process.env.KAIRO_R2_WORKER_URL || '', backupPassphraseConfigured: !!process.env.KAIRO_BACKUP_PASSPHRASE, canSaveSecrets: encryptionAvailable(), source: cloudSettingsSource }),
+  'cloud:configure': async (_e, input) => {
+    if (booting || !cloudSettings) throw new Error('Wait for Kairo to finish starting.');
+    if (firebase?.publicSession()) throw new Error('Sign out before changing backend settings.');
+    const settings = validateCloudSettings(input);
+    if (!Object.hasOwn(input, 'backupPassphrase') && settings.firebase.projectId === config?.projectId && settings.firebase.authEmulator === config?.authEmulator) settings.backupPassphrase = process.env.KAIRO_BACKUP_PASSPHRASE || '';
+    const saved = cloudSettings.save(settings);
+    applyCloudSettings(saved); await configure(saved.firebase);
+    cloudSettingsSource = 'saved app settings'; startupError = '';
+    broadcast('auth:changed', authState()); return authState();
+  },
   'auth:signIn': (_e, input) => authenticate('signInWithPassword', input),
   'auth:signUp': (_e, input) => authenticate('signUp', input),
   'auth:signOut': async () => { endSession(); await firebase?.signOut(); broadcast('auth:changed', authState()); return authState(); },
@@ -389,7 +402,7 @@ ipcMain.handle('kairo:drop', async (event, paths) => {
 });
 async function authenticate(action, { email, password }) {
   if (booting) throw new Error('Session is still being restored. Try again shortly.');
-  if (!firebase) throw new Error('Add Firebase configuration to .env and restart the app.');
+  if (!firebase) throw new Error('Open Backend setup and save your Firebase settings before signing in.');
   endSession(); await firebase.signOut(); await configure(config);
   await firebase.authenticate(action, email, password); activateStore(); return authState();
 }
@@ -398,9 +411,12 @@ app.whenReady().then(async () => {
   const locationFile = path.join(app.getPath('userData'), 'storage-location.json');
   if (fs.existsSync(locationFile)) { try { const saved = JSON.parse(fs.readFileSync(locationFile, 'utf8')).directory; if (path.isAbsolute(saved) && fs.statSync(saved).isDirectory()) dataDir = fs.realpathSync(saved); } catch { startupError = 'The selected local data folder is unavailable. Using the default folder.'; } }
   fs.mkdirSync(dataDir, { recursive: true });
+  cloudSettings = new CloudSettings(app.getPath('userData'), { encryptionAvailable, encrypt: text => safeStorage.encryptString(text), decrypt: bytes => safeStorage.decryptString(bytes) });
   try {
     const envFile = process.env.KAIRO_ENV_FILE || (app.isPackaged ? path.join(app.getPath('userData'), '.env') : path.join(__dirname, '../.env'));
     environment.loadEnv(envFile);
+    const savedCloudSettings = cloudSettings.load();
+    if (savedCloudSettings) { applyCloudSettings(savedCloudSettings); cloudSettingsSource = 'saved app settings'; }
     const settings = environment.firebaseConfig(); if (settings.apiKey && settings.projectId) await configure(settings);
     createWindow();
     if (firebase && encryptionAvailable() && fs.existsSync(secureFile())) {

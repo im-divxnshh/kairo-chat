@@ -6,6 +6,38 @@ const os = require('node:os');
 const P = require('../src/lib/providers');
 const C = require('../src/lib/core');
 const env = require('../src/lib/env');
+const { CloudSettings, applySettings } = require('../src/lib/cloud-settings');
+
+test('backend settings persist across app restarts and never store extra credentials', () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'kairo-backend-'));
+  try {
+    const store = new CloudSettings(directory);
+    store.save({ firebase: { apiKey: 'public-web-key', projectId: 'demo-kairo', privateKey: 'do-not-store' }, r2WorkerUrl: 'https://storage.fixture.test/', providerKey: 'do-not-store' });
+    const restored = new CloudSettings(directory).load();
+    assert.equal(restored.firebase.projectId, 'demo-kairo'); assert.equal(restored.r2WorkerUrl, 'https://storage.fixture.test');
+    assert.ok(!fs.readFileSync(store.file, 'utf8').includes('do-not-store'));
+    const target = { KAIRO_FIREBASE_API_KEY: 'old', KAIRO_FIREBASE_AUTH_EMULATOR: 'http://localhost:9099', KAIRO_BACKUP_PASSPHRASE: 'old-secret', KAIRO_ACTIVE_PROVIDER: 'codex' };
+    applySettings(restored, target); assert.equal(target.KAIRO_FIREBASE_API_KEY, 'public-web-key'); assert.equal(target.KAIRO_FIREBASE_AUTH_EMULATOR, ''); assert.equal(target.KAIRO_BACKUP_PASSPHRASE, undefined); assert.equal(target.KAIRO_ACTIVE_PROVIDER, 'codex');
+    const before = fs.readFileSync(store.file, 'utf8');
+    assert.throws(() => store.save({ firebase: restored.firebase, r2WorkerUrl: 'http://remote.example.test' }), /HTTPS/);
+    assert.throws(() => store.save({ firebase: restored.firebase, backupPassphrase: 'a private backup passphrase' }), /secure storage/);
+    assert.equal(fs.readFileSync(store.file, 'utf8'), before);
+  } finally { fs.rmSync(directory, { recursive: true, force: true }); }
+});
+
+test('OS-protected backend settings restore secrets without a plaintext fallback', () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'kairo-backend-secure-'));
+  const protection = { encryptionAvailable: () => true, encrypt: text => Buffer.from(text).map(byte => byte ^ 170), decrypt: bytes => Buffer.from(bytes).map(byte => byte ^ 170).toString() };
+  try {
+    const store = new CloudSettings(directory, protection), passphrase = 'a private backup passphrase';
+    store.save({ firebase: { apiKey: 'public-web-key', projectId: 'demo-kairo' }, backupPassphrase: passphrase });
+    assert.ok(!fs.readFileSync(store.file, 'utf8').includes(passphrase));
+    assert.equal(new CloudSettings(directory, protection).load().backupPassphrase, passphrase);
+    assert.throws(() => new CloudSettings(directory).load(), /Unlock/);
+    fs.writeFileSync(store.file, JSON.stringify({ version: 1, encrypted: false, settings: { firebase: { apiKey: 'key', projectId: 'demo-kairo' }, backupPassphrase: passphrase } }));
+    assert.throws(() => store.load(), /operating system encryption/);
+  } finally { fs.rmSync(directory, { recursive: true, force: true }); }
+});
 test('native CLI configuration honors explicit files without changing Claude authentication storage', () => {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'kairo-config-'));
   try {
