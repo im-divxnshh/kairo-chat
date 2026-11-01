@@ -49,3 +49,14 @@ The transport accepts terminal Claude `result` and Codex `turn.completed` events
 ## Active provider on this device
 
 `KAIRO_ACTIVE_PROVIDER=codex` makes Codex the default and restricts provider selection, request dispatch and health polling to Codex profiles. The preference applies when saved cloud settings still select Claude. It changes the runtime view without replacing stored native configurations or conversation history. Calls to inactive providers are rejected; their scheduled tasks do not run while this preference is set. Clear the value and restart to restore normal provider switching. CLI verification uses the active native provider by default; an explicit `--provider` remains available for later diagnostics.
+## Local backend setup contract
+
+Installed clients configure their own Firebase project and optional R2 Worker through the trusted Electron IPC bridge. The existing Firebase and Worker HTTP contracts below are unchanged.
+
+- `cloud:settings` requires a trusted renderer and returns Firebase web app settings, `r2WorkerUrl`, `source`, `canSaveSecrets`, and `backupPassphraseConfigured`. It never returns the backup passphrase. It is available before login.
+- `cloud:configure` requires a trusted renderer, completed startup, and a signed-out session. Input is `{ firebase: { apiKey, projectId, authDomain?, appId?, authEmulator?, firestoreEmulator? }, r2WorkerUrl?, backupPassphrase? }`. Firebase web API key and a valid project ID are required. Emulators must both be loopback HTTP endpoints. R2 requires HTTPS except for loopback development URLs.
+- Successful saves return the updated auth state and apply immediately. Local `cloud-settings.json` is restored at startup and overrides cloud environment settings. The configuration is excluded from workspace exports and Firestore sync.
+- An omitted passphrase retains the existing one only for the same Firebase project and auth emulator. An explicit empty string removes it. Supplied passphrases must contain 16–4096 characters and require OS secure storage; no plaintext secret fallback is allowed.
+- Invalid input, locked secure storage, and write failures surface an error. A save does not provision Firebase, deploy rules, create R2 resources, or prove live connectivity; the following login exercises the chosen backend.
+
+The configuration tests verify persistence and storage boundaries; the Electron backend test starts as a packaged installation with no environment file, saves configuration, signs in against contract doubles, reloads settings after restart, and signs in again. DOM tests cover the setup form and login becoming available. These tests do not establish native keychain behavior or live account access.

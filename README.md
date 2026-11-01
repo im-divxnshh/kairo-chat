@@ -28,7 +28,7 @@ Your ideas deserve somewhere better than twelve tabs and a forgotten terminal.
 
 Kairo brings AI conversations, project files, Git, prompts, and agent workflows into one Electron app. Keep using your own authenticated CLI providers, organize your work, and let the lime-and-lavender mascot handle the vibes.
 
-**Early release: v0.2.0.** macOS and Windows are the packaging targets. Native desktop checks and some live integrations still need verification; see the [feature status](FEATURES.md) and [platform checklist](docs/USER_CHECKS.md). Linux installers are not configured.
+**Early release: v0.2.1.** macOS and Windows are the packaging targets. Native desktop checks and some live integrations still need verification; see the [feature status](FEATURES.md) and [platform checklist](docs/USER_CHECKS.md). Linux installers are not configured.
 
 ## ✨ The good stuff
 
@@ -64,31 +64,21 @@ cd kairo-chat
 npm ci
 ```
 
-### 3. Configure your environment
-
-Copy the blank template **once**, then fill in your own values:
-
-```sh
-# macOS / Linux shell
-cp .env.example .env
-```
-
-```powershell
-# Windows PowerShell
-Copy-Item .env.example .env
-```
-
-Follow the [Firebase and R2 setup guide](docs/FIREBASE_R2_SETUP.md) for the exact cloud and emulator steps. Firebase login and AI-provider authentication are separate.
-
-`KAIRO_ACTIVE_PROVIDER` is optional: leave it empty to enable provider switching, or set it to `codex`, `claude`, or `ollama` to limit this device to one provider.
-
-### 4. Start the app
+### 3. Open Kairo and connect your backend
 
 ```sh
 npm start
 ```
 
-Sign in, choose your provider, and open a project. The `prestart` script builds the macOS native helpers automatically.
+On the sign-in screen, click **Set up my backend**. Enter your own Firebase web API key and project ID, plus the optional auth domain and app ID from Firebase Console → Project settings. Add your deployed R2 Worker URL for cloud attachments and backups.
+
+Click **Save backend settings**, then sign in or create an account. Kairo remembers your configuration on this device and restores it whenever the app opens. **DMG/EXE installations use this same setup flow; no environment file or restart is required.**
+
+Follow the [Firebase and R2 setup guide](docs/FIREBASE_R2_SETUP.md) to provision your own backend, deploy its rules and Worker, or configure the Firebase emulators. AI-provider authentication remains separate.
+
+Developers can optionally use `.env.example` as an environment-file template. Saved in-app backend settings take precedence over environment cloud settings. `KAIRO_ACTIVE_PROVIDER` still optionally limits this device to `codex`, `claude`, or `ollama`.
+
+On macOS, the `prestart` script builds the native helpers automatically. Once signed in, choose your provider and open a project.
 
 ## 🔐 Your workspace, explained
 

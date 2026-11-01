@@ -29,7 +29,23 @@ wrangler deploy
 
 Enter your Firebase project ID when prompted. Wrangler supplies the private R2 binding; R2 access keys are never embedded in the app. Save the deployed Worker URL. The app uses your existing Firebase project, Worker and private R2 bucket. The bucket binding must be named `BUCKET`.
 
-## Fill the desktop environment
+## Save your backend inside Kairo
+
+After installing the DMG/EXE or running `npm start`, click **Set up my backend** on the sign-in screen:
+
+1. Enter your Firebase web API key and project ID from Firebase Console → Project settings.
+2. Optionally enter the auth domain and web app ID.
+3. Enter the deployed R2 Worker URL for attachments and backups. The Worker must use the same Firebase project ID.
+4. Optionally enter a backup encryption passphrase of at least 16 characters. Kairo saves passphrases only when OS secure storage is available. Keep a separate copy for restoration.
+5. Click **Save backend settings**, then sign in or create an account.
+
+Kairo saves these settings in its local app-data directory and loads them automatically at startup. When available, OS secure storage encrypts the saved configuration. Without it, Kairo can save Firebase web app settings and the Worker URL, but does not save a backup passphrase in plaintext. These are your own backend settings; no shared backend credentials are bundled with installers.
+
+Use **Backend settings** on the sign-in screen or under Settings → General to review them. Sign out before changing the backend. Leave the passphrase blank to retain it for the same project; use the removal checkbox to clear it. Changing projects clears the previous project's passphrase unless a new one is supplied.
+
+R2 access keys and Firebase service-account private keys belong on the backend and are not entered in the app. Native provider credentials remain in their CLI configuration files.
+
+## Optional developer environment
 
 Your private `.env` supplies these values (the tracked `.env.example` is a blank template):
 
@@ -56,7 +72,7 @@ npm start
 
 Create an account or sign in. The account menu sends verification emails. Provider settings support CLI executable paths, `settings.json` / `config.toml` paths, and optional model overrides. Leave model overrides empty to honor your CLI configuration. No OpenAI API key is needed. CLI authentication remains separate from Firebase login.
 
-Never distribute a shared `.env`, provider credentials or R2 access keys. Installers exclude environment files. For an installed app, set `KAIRO_ENV_FILE` to the absolute path of your private file, or place `.env` in the app's user-data directory. Restart after changing variables. Process environment values override the file.
+Never distribute a shared `.env`, provider credentials or R2 access keys. Installers exclude environment files. Environment-file configuration remains available for development and advanced deployments: set `KAIRO_ENV_FILE` to an absolute file path, or place `.env` in the installed app's user-data directory. Process environment values override file values; saved in-app backend settings override both for cloud configuration. Restart after changing an environment file. In-app setup applies immediately.
 
 ## Verify the deployment
 

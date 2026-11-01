@@ -360,7 +360,7 @@ Firebase Authentication and Cloud Firestore are the requested identity and prima
 
 - [ ] Category complete — 9/10
 
-- [x] **F1. Firebase project configuration** — Complete. Implemented and verified by Firebase REST contract tests, Electron backend integration tests and DOM account controls; live project deployment is still required.
+- [x] **F1. Firebase project configuration** — Complete. Implemented and verified by Firebase REST contract tests, packaged Electron backend integration tests and DOM account controls. Users save their own Firebase/R2 settings inside the app without .env; local restart and protected-storage checks pass. Live project deployment is still required.
 - [x] **F2. Email and password registration** — Complete. Implemented and verified by Firebase REST contract tests, Electron backend integration tests and DOM account controls; live project deployment is still required.
 - [x] **F3. Email and password sign-in** — Complete. Implemented and verified by Firebase REST contract tests, Electron backend integration tests and DOM account controls; live project deployment is still required.
 - [x] **F4. Sign out and secure session persistence** — Complete. Implemented and verified by Firebase REST contract tests, Electron backend integration tests and DOM account controls; live project deployment is still required.

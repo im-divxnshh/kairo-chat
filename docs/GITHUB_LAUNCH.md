@@ -82,9 +82,9 @@ The repository already includes an MIT license, contribution guide, conduct poli
 
 Builds from CI are unsigned and are not automatically published as releases. Complete the relevant [native checks](USER_CHECKS.md) and live verification before publishing downloadable installers. Signing and notarization remain separate tasks.
 
-When v0.2.0 is ready, create a `v0.2.0` tag for the tested commit and a GitHub Release titled:
+When v0.2.1 is ready, create a `v0.2.1` tag for the tested commit and a GitHub Release titled:
 
-> Kairo v0.2.0 — your AI workspace, with personality
+> Kairo v0.2.1 — your AI workspace, with personality
 
 Use the [release-notes draft](RELEASE_NOTES.md), edit it to reflect the checks actually completed, and attach the matching DMG/EXE/MSI files. If desktop verification is incomplete, keep the release a draft or clearly marked prerelease. Never upload a private environment file.
 

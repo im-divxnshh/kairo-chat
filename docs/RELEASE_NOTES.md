@@ -1,4 +1,4 @@
-# Draft: Kairo v0.2.0
+# Draft: Kairo v0.2.1
 
 This is a maintainer template, not a published-release announcement. Update validation and attach verified installers before publishing.
 
@@ -7,6 +7,9 @@ This is a maintainer template, not a published-release announcement. Update vali
 Kairo brings chat, project context, Git, and agent workflows into one Electron desktop app with an original animated mascot.
 
 ### Highlights
+
+- First-run backend setup: enter your own Firebase settings and R2 Worker URL inside the app; settings persist across restarts without `.env`.
+- OS-protected storage for backend settings and optional backup passphrases.
 
 - Codex and Claude Code through native CLI configurations, plus optional local Ollama inference.
 - Streaming conversations with branches, attachments, Markdown, and common LaTeX rendering.
@@ -21,9 +24,11 @@ This release requires your own Firebase configuration and provider authenticatio
 
 ### Release validation
 
+Local evidence for 0.2.1: all 80 tests and syntax/asset checks passed. The x64 native helpers and unsigned macOS app bundle built successfully; the bundle contains backend setup and excludes private configuration. DMG creation failed in the workspace with `hdiutil: create failed - Device not configured`. An unsigned ZIP of the app is available as a local alternative. Native installation, keychain behavior, Windows builds and a new live cloud run remain unverified here.
+
 Before publishing, replace this checklist with the actual evidence:
 
-- [ ] Local syntax/asset checks and tests passed for the tagged commit.
+- [ ] Local syntax/asset checks and tests passed for the tagged commit (working-tree checks passed; repeat CI for the actual tag).
 - [ ] GitHub Actions passed on macOS and Windows.
 - [ ] Live cloud and selected-provider checks passed.
 - [ ] Native installation and desktop behavior checked on each published target.
